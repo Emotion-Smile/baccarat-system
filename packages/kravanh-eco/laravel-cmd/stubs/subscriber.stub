@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Events\Dispatcher;
+
+class {{ class }}
+{
+	public function subscribe(Dispatcher $dispatcher): void
+    {
+		
+    }
+}

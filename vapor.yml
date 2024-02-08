@@ -1,0 +1,70 @@
+id: 25355
+name: cocking-betting-system
+environments:
+  production:
+    memory: 1024
+    queue-memory: 1024
+    cli-memory: 1024
+    timeout: 900
+    cli-timeout: 900
+    build:
+      - "COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev"
+      - "php artisan event:cache"
+      - "npm ci"
+      - "npm run prod && rm -rf node_modules"
+    domain:
+      - dev.f88.live
+    runtime: docker
+    octane: true
+    database: hengmart-dev-restore
+    cache: cockfight-dev-cache
+    deploy:
+      - "php artisan migrate --force"
+      - "php artisan f88:clear-language"
+      - "php artisan db:seed --class=PermissionSeeder --force"
+      - "php artisan db:seed --class=RoleSeeder --force"
+  staging:
+    timeout: 900
+    network: vapor-kravanh-network
+    cache: cocking-betting-cache
+    memory: 3008
+    storage: cocking-betting-storage
+    gateway-version: 1
+    domain:
+      - f88.live
+      - vk88.live
+      - sd88.live
+      - sco88.live
+      - kv88.live
+      - dp88.live
+      - pb88.live
+    cli-memory: 3008
+    cli-timeout: 900
+    queue-memory: 3008
+    runtime: docker
+    octane: true
+    database: betting-db-prod
+    database-proxy: true
+    firewall:
+      rate-limit: 8000
+      bot-control:
+        - CategorySearchEngine
+        - CategorySocialMedia
+        - CategoryScrapingFramework
+        - CategoryAdvertising
+        - CategoryArchiver
+        #        - SignalNonBrowserUserAgent  Note: block Http client request
+        - CategorySeo
+        - CategoryContentFetcher
+        - CategoryMiscellaneous
+        - CategoryLinkChecker
+    build:
+      - "COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev"
+      - "php artisan event:cache"
+      - "npm ci"
+      - "npm run prod && rm -rf node_modules"
+    deploy:
+      - "php artisan migrate --force"
+      - "php artisan f88:clear-language"
+      - "php artisan db:seed --class=PermissionSeeder --force"
+      - "php artisan db:seed --class=RoleSeeder --force"

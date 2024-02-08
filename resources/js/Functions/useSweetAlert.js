@@ -1,0 +1,16 @@
+import {inject} from 'vue';
+import Swal from 'sweetalert2';
+
+const SwalSymbol = Symbol();
+
+
+export function useSweetAlert() {
+	return inject(SwalSymbol);
+}
+
+export default {
+	install: (app) => {
+		app.config.globalProperties.$Swal = Swal;
+		app.provide(SwalSymbol, Swal);
+	}
+};

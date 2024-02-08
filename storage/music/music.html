@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../../public/dragon-tiger/js/howler.min.js"></script>
+<script>
+    const playList = [
+       'music01',
+       'music02',
+       'music03',
+       'music04',
+       'music05',
+    ]
+
+    let currentTrackIndex = 0;
+    let sound;
+
+    function initHowler() {
+        sound = new Howl({
+            src: window.parent.route('music.track', {fileName: `${playList[currentTrackIndex]}`}),
+            xhr: { method: 'GET' },
+            volume: 0.5,
+            onload: emitMusicEvent,
+            onplayerror: function() {
+                sound.once('unlock', function() {
+                    sound.play();
+                    emitMusicEvent();
+                });
+            },
+            format: ['webm', 'mp3'],
+            onend: playNextTrack
+        });
+    }
+
+    playCurrentTrack();
+
+    // Function to play the current track
+    function playCurrentTrack() {
+        if (!sound) {
+            initHowler();
+        }
+        sound.play();
+    }
+
+    // Function to pause the current track
+    function pauseCurrentTrack() {
+        if (sound) {
+            sound.pause();
+        }
+    }
+
+    // Function to stop and reset the current track
+    function stopCurrentTrack() {
+        if (sound) {
+            sound.stop();
+            sound.unload();
+            sound = null;
+        }
+    }
+
+    // Function to play the next track in the playlist
+    function playNextTrack() {
+        stopCurrentTrack(); // Stop and unload the current track
+        currentTrackIndex = (currentTrackIndex + 1) % playList.length;
+        initHowler();
+        sound.play();
+    }
+
+    window.addEventListener('message', function(event) {
+        if (event.data === 'pauseMusic') {
+            pauseCurrentTrack()
+        }
+        if (event.data === 'playMusic'){
+            playNextTrack();
+        }
+        emitMusicEvent();
+    });
+
+    function emitMusicEvent(){
+        setTimeout(()=>window.parent.postMessage({ eventName: 'musicEvent', isPlaying: sound.playing()}, '*'),500);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use Spatie\ModelStates\State;
+
+class {{ class }} extends State
+{
+	
+}

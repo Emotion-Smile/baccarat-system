@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    public function __construct(
+        public int $id,
+        public string $name
+    ) {
+    }
+
+    // TODO: input type of request Ex. BookRequest $request
+    public static function fromRequest($request) : {{ class }}
+    {
+        return new {{ class }}(
+            id: $request->id,
+            name: $request->name
+        );
+    }
+}

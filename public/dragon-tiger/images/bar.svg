@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="30" viewBox="0 0 29 30">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.534" gradientTransform="translate(0 -0.177) scale(1 1.354)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e3bb77"/>
+      <stop offset="1" stop-color="#b77318"/>
+    </radialGradient>
+  </defs>
+  <g id="Group_23" data-name="Group 23" transform="translate(-125 -60)">
+    <rect id="Rectangle_175" data-name="Rectangle 175" width="29" height="7" rx="3" transform="translate(125 83)" fill="url(#radial-gradient)"/>
+    <g id="Rectangle_176" data-name="Rectangle 176" transform="translate(125 60)" fill="#f2b425" stroke="#f9c55b" stroke-width="0.5">
+      <rect width="29" height="28" rx="3" stroke="none"/>
+      <rect x="0.25" y="0.25" width="28.5" height="27.5" rx="2.75" fill="none"/>
+    </g>
+    <g id="Group_22" data-name="Group 22" transform="translate(131.5)">
+      <rect id="Rectangle_179" data-name="Rectangle 179" width="16" height="3" rx="0.5" transform="translate(0 79)" fill="#fff"/>
+      <rect id="Rectangle_178" data-name="Rectangle 178" width="16" height="3" rx="0.5" transform="translate(0 73)" fill="#fff"/>
+      <rect id="Rectangle_177" data-name="Rectangle 177" width="16" height="3" rx="0.5" transform="translate(0 67)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

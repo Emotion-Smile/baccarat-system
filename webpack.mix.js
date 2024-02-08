@@ -1,0 +1,16 @@
+const mix = require('laravel-mix');
+
+mix.js('resources/js/app.js', 'public/js')
+    .vue({version: 3})
+    .postCss('resources/css/app.css', 'public/css', [require('postcss-import'), require('tailwindcss'),])
+    .version();
+
+mix.copy('resources/images/', 'public/images/');
+
+mix.webpackConfig(require('./webpack.config'));
+
+// .browserSync('http://localhost:8001/');
+
+if (mix.inProduction()) {
+    //mix.version();
+}

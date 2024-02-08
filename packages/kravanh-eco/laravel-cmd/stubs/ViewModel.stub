@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use Spatie\ViewModels\ViewModel;
+
+class {{ class }} extends ViewModel
+{
+
+}

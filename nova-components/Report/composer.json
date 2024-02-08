@@ -1,0 +1,32 @@
+{
+    "name": "kravanh-eco/report",
+    "description": "Reports for CBS Admin",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "KravanhEco\\Report\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KravanhEco\\Report\\ToolServiceProvider",
+                "KravanhEco\\Report\\Modules\\Core\\Providers\\CoreServiceProvider",
+                "KravanhEco\\Report\\Modules\\Mixed\\Providers\\MixedServiceProvider",
+                "KravanhEco\\Report\\Modules\\DragonTiger\\Providers\\DragonTigerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

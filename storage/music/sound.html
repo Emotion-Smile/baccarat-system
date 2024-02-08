@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../../public/dragon-tiger/js/howler.min.js"></script>
+<script>
+    const start = new Howl({
+        src: window.parent.route('music.track', {fileName: 'start'}),
+        xhr: { method: 'GET' },
+        volume: 1.0,
+        autoplay: true,
+        mute: true,
+        onload: emitSoundEvent,
+        onplayerror:emitSoundEvent,
+        format: ['webm', 'mp3'],
+    });
+
+    const stop = new Howl({
+        src: window.parent.route('music.track', {fileName: 'stop'}),
+        xhr: { method: 'GET' },
+        volume: 1.0,
+        format: ['webm', 'mp3'],
+    });
+
+    window.addEventListener('message', function(event) {
+        if (event.data === 'enabled') {
+            if (!start.playing()){
+                start.mute(true)
+                start.play();
+                emitSoundEvent();
+            }
+        }
+
+        if (event.data === 'startBetting') {
+            if (start.playing()) start.stop();
+                start.mute(false);
+                start.play();
+        }
+
+        if (event.data === 'stopBetting'){
+            if (stop.playing()) stop.stop();
+                stop.play();
+        }
+    });
+
+    function emitSoundEvent(){
+        setTimeout(()=>window.parent.postMessage({ eventName: 'soundEvent', isPlaying: start.playing()}, '*'), 500);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Kravanh\Application\Admin\Resource;
+
+class {{ class }} extends Resource
+{
+
+    public static $model = \{{ namespacedModel }}::class;
+
+    public static $title = 'id';
+
+    public static $search = [
+        'id',
+    ];
+
+
+    public function fields(Request $request) : array
+    {
+        return [
+            ID::make(__('ID'), 'id')->sortable(),
+        ];
+    }
+
+
+}

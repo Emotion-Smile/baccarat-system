@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Kravanh\Domain\DragonTiger\Dto;
+
+class ShareCommissionData
+{
+    public function __construct(public int $share, public float $commission)
+    {
+
+    }
+
+    public static function make(int $share, float $commission): ShareCommissionData
+    {
+        return new ShareCommissionData($share, $commission);
+    }
+}
