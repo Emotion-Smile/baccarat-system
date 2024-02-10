@@ -8,4 +8,8 @@ enum BaccaratGameWinner
     const Banker = 'banker';
     const Tie = 'tie';
     const Cancel = 'cancel';
+    const Big = 'big';
+    const Small = 'small';
+    const PlayerPair = 'player_pair';
+    const BankerPair = 'banker_pair';
 }

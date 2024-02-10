@@ -14,8 +14,8 @@ class BaccaratServiceProvider extends AppServiceProvider
         $this->loadMigrationsFrom("$domainPath/Database/migrations");
 
         $this->commands([
-//            BaccaratGameCreateNewCommand::class,
-//            BaccaratGameSubmitResultCommand::class,
+            BaccaratGameCreateNewCommand::class,
+            BaccaratGameSubmitResultCommand::class,
         ]);
 
     }
