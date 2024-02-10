@@ -17,7 +17,7 @@ class BaccaratTicketFactory extends Factory
         $member = BaccaratFactoryHelper::make()->member();
         return [
             'game_table_id' => BaccaratFactoryHelper::make()->gameTableId(),
-            'dragon_tiger_game_id' => BaccaratFactoryHelper::make()->baccaratGameId(),
+            'baccarat_game_id' => BaccaratFactoryHelper::make()->baccaratGameId(),
             'user_id' => $member->id,
             'super_senior' => $member->super_senior,
             'senior' => $member->senior,
@@ -99,33 +99,33 @@ class BaccaratTicketFactory extends Factory
         return $attribute['amount'] * $attribute['payout_rate'];
     }
 
-    private function makeBetType(array $attribute): string
-    {
+//    private function makeBetType(array $attribute): string
+//    {
+//
+//        if ($attribute['bet_on'] === 'dragon') {
+//            return $this->faker->randomElement(['dragon', 'red', 'black', 'small', 'big']);
+//        }
+//
+//        if ($attribute['bet_on'] === 'tiger') {
+//            return $this->faker->randomElement(['tiger', 'red', 'black', 'small', 'big']);
+//        }
+//
+//        return 'tie';
+//    }
 
-        if ($attribute['bet_on'] === 'dragon') {
-            return $this->faker->randomElement(['dragon', 'red', 'black', 'small', 'big']);
-        }
-
-        if ($attribute['bet_on'] === 'tiger') {
-            return $this->faker->randomElement(['tiger', 'red', 'black', 'small', 'big']);
-        }
-
-        return 'tie';
-    }
-
-    public function forMember(Member $member, BaccaratGame $dragonTigerGame): BaccaratTicketFactory
-    {
-        return $this->state(function (array $attributes) use ($member, $dragonTigerGame) {
-            return [
-                'dragon_tiger_game_id' => $dragonTigerGame->id,
-                'game_table_id' => $dragonTigerGame->game_table_id,
-                'super_senior' => $member->super_senior,
-                'senior' => $member->senior,
-                'master_agent' => $member->master_agent,
-                'agent' => $member->agent,
-                'user_id' => $member->id
-            ];
-        });
-
-    }
+//    public function forMember(Member $member, BaccaratGame $dragonTigerGame): BaccaratTicketFactory
+//    {
+//        return $this->state(function (array $attributes) use ($member, $dragonTigerGame) {
+//            return [
+//                'dragon_tiger_game_id' => $dragonTigerGame->id,
+//                'game_table_id' => $dragonTigerGame->game_table_id,
+//                'super_senior' => $member->super_senior,
+//                'senior' => $member->senior,
+//                'master_agent' => $member->master_agent,
+//                'agent' => $member->agent,
+//                'user_id' => $member->id
+//            ];
+//        });
+//
+//    }
 }

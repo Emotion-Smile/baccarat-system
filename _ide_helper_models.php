@@ -212,6 +212,196 @@ namespace App\Kravanh\Domain\DragonTiger\Models{
     }
 }
 
+namespace App\Kravanh\Domain\Baccarat\Models{
+    /**
+     * App\Kravanh\Domain\Baccarat\Models\BaccaratGame
+     *
+     * @property int $id
+     * @property int $game_table_id
+     * @property int $user_id
+     * @property int|null $result_submitted_user_id
+     * @property int $round
+     * @property int $number
+     * @property int|null $player_first_card_value
+     * @property string|null $player_first_card_type
+     * @property string|null $player_first_card_color
+     * @property int|null $player_first_card_points
+     * @property int|null $player_second_card_value
+     * @property string|null $player_second_card_type
+     * @property string|null $player_second_card_color
+     * @property int|null $player_second_card_points
+     * @property int|null $player_third_card_value
+     * @property string|null $player_third_card_type
+     * @property string|null $player_third_card_color
+     * @property int|null $player_third_card_points
+     * @property int|null $player_total_points
+     * @property int|null $player_points
+     * @property int|null $banker_first_card_value
+     * @property string|null $banker_first_card_type
+     * @property string|null $banker_first_card_color
+     * @property int|null $banker_first_card_points
+     * @property int|null $banker_second_card_value
+     * @property string|null $banker_second_card_type
+     * @property string|null $banker_second_card_color
+     * @property int|null $banker_second_card_points
+     * @property int|null $banker_third_card_value
+     * @property string|null $banker_third_card_type
+     * @property string|null $banker_third_card_color
+     * @property int|null $banker_third_card_points
+     * @property int|null $banker_total_points
+     * @property int|null $banker_points
+     * @property string|null $winner
+     * @property \Illuminate\Support\Carbon $started_at
+     * @property \Illuminate\Support\Carbon $closed_bet_at
+     * @property \Illuminate\Support\Carbon|null $result_submitted_at
+     * @property mixed|null $statistic
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Kravanh\Domain\Game\Models\GameTable|null $gameTable
+     * @property-read \App\Models\User|null $submittedResult
+     * @property-read \App\Kravanh\Domain\Baccarat\Collections\BaccaratTicketsCollection<int, \App\Kravanh\Domain\Baccarat\Models\BaccaratTicket> $tickets
+     * @property-read int|null $tickets_count
+     * @property-read \App\Models\User|null $user
+     *
+     * @method static \App\Kravanh\Domain\Baccarat\Collections\BaccaratGameCollection<int, static> all($columns = ['*'])
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame excludeLiveGame()
+     * @method static \App\Kravanh\Domain\Baccarat\Database\Factories\BaccaratGameFactory factory(...$parameters)
+     * @method static \App\Kravanh\Domain\Baccarat\Collections\BaccaratGameCollection<int, static> get($columns = ['*'])
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame newModelQuery()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame newQuery()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame query()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereClosedBetAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereCreatedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerColor($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerTotalPoints($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerPoitns($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerType($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereGameTableId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereLiveGame()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereNumber($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereResultSubmittedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereResultSubmittedUserId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereRound($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereStartedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereStatistic($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereBankerColor($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereBankerTotalPionts($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereBankerPoints($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereBankerType($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereUpdatedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereUserId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereWinner($value)
+     */
+    class BaccaratGame extends \Eloquent
+    {
+    }
+}
+
+namespace App\Kravanh\Domain\Baccarat\Models{
+    /**
+     * App\Kravanh\Domain\Baccarat\Models\BaccaratPayoutDeposited
+     *
+     * @property int $id
+     * @property int $baccarat_game_id
+     * @property int $member_id
+     * @property int $transaction_id
+     * @property string $amount
+     * @property string $ticket_ids
+     * @property int $rollback_transaction_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Kravanh\Domain\User\Models\Member|null $member
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited query()
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereBaccaratGameId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereMemberId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereRollbackTransactionId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereTicketIds($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereTransactionId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|BaccaratPayoutDeposited whereUpdatedAt($value)
+     */
+    class BaccaratPayoutDeposited extends \Eloquent
+    {
+    }
+}
+
+namespace App\Kravanh\Domain\Baccarat\Models{
+    /**
+     * App\Kravanh\Domain\Baccarat\Models\BaccaratTicket
+     *
+     * @property int $id
+     * @property int $game_table_id
+     * @property int $baccarat_game_id
+     * @property int $user_id
+     * @property int $super_senior
+     * @property int $senior
+     * @property int $master_agent
+     * @property int $agent
+     * @property int $amount
+     * @property string $bet_on
+     * @property string $bet_type
+     * @property float $payout_rate
+     * @property int $payout
+     * @property string $status
+     * @property array $share
+     * @property array $commission
+     * @property int $in_year
+     * @property int $in_month
+     * @property int $in_day
+     * @property string $ip
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Kravanh\Domain\Baccarat\Models\BaccaratGame|null $game
+     * @property-read \App\Kravanh\Domain\Game\Models\GameTable|null $gameTable
+     * @property-read \App\Kravanh\Domain\User\Models\Member|null $member
+     * @property-read \App\Models\User|null $user
+     *
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket accepted()
+     * @method static \App\Kravanh\Domain\Baccarat\Collections\BaccaratTicketsCollection<int, static> all($columns = ['*'])
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket excludeOutstandingTickets()
+     * @method static \App\Kravanh\Domain\Baccarat\Database\Factories\BaccaratTicketFactory factory(...$parameters)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket filterBy(\App\Kravanh\Domain\Baccarat\Support\DateFilter $filter)
+     * @method static \App\Kravanh\Domain\Baccarat\Collections\BaccaratTicketsCollection<int, static> get($columns = ['*'])
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket newModelQuery()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket newQuery()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket onlyBetOnPlayerAndBankerTickets(\App\Kravanh\Domain\Baccarat\Models\BaccaratGame $game)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket onlyWinningTickets(\App\Kravanh\Domain\Baccarat\Models\BaccaratGame $game)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket query()
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereAgent($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereAmount($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereBetOn($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereBetType($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereCommission($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereCreatedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereBaccaratGameId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereGameTable(?int $gameTableId)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereGameTableId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereId($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereInDay($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereInMonth($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereInYear($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereIp($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereMasterAgent($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket wherePayout($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket wherePayoutRate($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereSenior($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereShare($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereStatus($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereSuperSenior($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereUpdatedAt($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratTicketQueryBuilder|BaccaratTicket whereUserId($value)
+     */
+    class BaccaratTicket extends \Eloquent
+    {
+    }
+}
+
 namespace App\Kravanh\Domain\Environment\Models{
     /**
      * App\Kravanh\Domain\Environment\Models\Domain

@@ -9,10 +9,10 @@ use Illuminate\Support\Collection;
 
 final class BaccaratPayoutProcessingManagerAction
 {
-    public function __invoke(int $dragonTigerGameId): void
+    public function __invoke(int $baccaratGameId): void
     {
 
-        $game = BaccaratGame::find($dragonTigerGameId);
+        $game = BaccaratGame::find($baccaratGameId);
 
         if ($game->isLive()) {
             return;
@@ -76,7 +76,7 @@ final class BaccaratPayoutProcessingManagerAction
 
     private function handleTiePayout(BaccaratGame $game): Collection
     {
-        $tickets = app(BaccaratGameGetTicketsBetOnDragonAndTigerForTieResultAction::class)(game: $game);
+        $tickets = app(BaccaratGameGetTicketsBetOnPLayerAndBankerForTieResultAction::class)(game: $game);
 
         return $this->processPayout(game: $game, tickets: $tickets);
     }

@@ -21,7 +21,7 @@ final class BaccaratTicketQueryBuilder extends Builder
             return $this;
         }
 
-        $this->query->whereNotIn('dragon_tiger_game_id', $baccaratGameIds);
+        $this->query->whereNotIn('baccarat_game_id', $baccaratGameIds);
 
         return $this;
     }
@@ -91,11 +91,11 @@ final class BaccaratTicketQueryBuilder extends Builder
             ->where('baccarat_game_id', $game->id)
             ->accepted()
             ->where(function (Builder $query) {
-                $query->where('bet_on', BaccaratGameWinner::Dragon)
-                    ->where('bet_type', BaccaratGameWinner::Dragon)
+                $query->where('bet_on', BaccaratGameWinner::Player)
+                    ->where('bet_type', BaccaratGameWinner::Player)
                     ->orWhere(function (Builder $query) {
-                        $query->where('bet_on', BaccaratGameWinner::Tiger)
-                            ->where('bet_type', BaccaratGameWinner::Tiger);
+                        $query->where('bet_on', BaccaratGameWinner::Banker)
+                            ->where('bet_type', BaccaratGameWinner::Banker);
                     });
             });
 

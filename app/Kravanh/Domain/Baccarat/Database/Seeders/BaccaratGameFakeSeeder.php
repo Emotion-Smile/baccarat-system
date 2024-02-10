@@ -38,7 +38,7 @@ final class BaccaratGameFakeSeeder extends Seeder
             ->get()
             ->filter(function ($tx) {
                 $meta = $tx->meta['game'] ?? '';
-                if ($meta === 'dragon_tiger') {
+                if ($meta === 'baccarat') {
                     return $tx;
                 }
             })
@@ -69,7 +69,7 @@ final class BaccaratGameFakeSeeder extends Seeder
 
         foreach (BaccaratGame::all() as $game) {
 
-            $tickets = BaccaratTicket::factory(['game_table_id' => $tableId, 'dragon_tiger_game_id' => $game->id])->count(10)->create();
+            $tickets = BaccaratTicket::factory(['game_table_id' => $tableId, 'baccarat_game_id' => $game->id])->count(10)->create();
 
             foreach ($tickets as $ticket) {
                 BaccaratGameMemberBettingWithdrawBalanceAction::from(
@@ -79,7 +79,7 @@ final class BaccaratGameFakeSeeder extends Seeder
                 );
             }
 
-            app(BaccaratPayoutProcessingManagerAction::class)(dragonTigerGameId: $game->id);
+            app(BaccaratPayoutProcessingManagerAction::class)(baccaratGameId: $game->id);
         }
 
     }
@@ -89,15 +89,41 @@ final class BaccaratGameFakeSeeder extends Seeder
         $lastGame = BaccaratGame::query()->orderByDesc('id')->first();
         $beforeLastGame = BaccaratGame::find($lastGame->id - 1);
 
-        $beforeLastGame->dragon_result = null;
-        $beforeLastGame->dragon_type = null;
-        $beforeLastGame->dragon_range = null;
-        $beforeLastGame->dragon_color = null;
+        $beforeLastGame->player_first_card_value = null;
+        $beforeLastGame->player_first_card_type = null;
+        $beforeLastGame->player_first_card_color = null;
+        $beforeLastGame->player_first_card_points = null;
 
-        $beforeLastGame->tiger_result = null;
-        $beforeLastGame->tiger_type = null;
-        $beforeLastGame->tiger_range = null;
-        $beforeLastGame->tiger_color = null;
+        $beforeLastGame->player_second_card_value = null;
+        $beforeLastGame->player_second_card_type = null;
+        $beforeLastGame->player_second_card_color = null;
+        $beforeLastGame->player_second_card_points = null;
+
+        $beforeLastGame->player_third_card_value = null;
+        $beforeLastGame->player_third_card_type = null;
+        $beforeLastGame->player_third_card_color = null;
+        $beforeLastGame->player_third_card_points = null;
+
+        $beforeLastGame->player_total_points = null;
+        $beforeLastGame->player_points = null;
+
+        $beforeLastGame->banker_first_card_value = null;
+        $beforeLastGame->banker_first_card_type = null;
+        $beforeLastGame->banker_first_card_color = null;
+        $beforeLastGame->banker_first_card_points = null;
+
+        $beforeLastGame->banker_second_card_value = null;
+        $beforeLastGame->banker_second_card_type = null;
+        $beforeLastGame->banker_second_card_color = null;
+        $beforeLastGame->banker_second_card_points = null;
+
+        $beforeLastGame->banker_third_card_value = null;
+        $beforeLastGame->banker_third_card_type = null;
+        $beforeLastGame->banker_third_card_color = null;
+        $beforeLastGame->banker_third_card_points = null;
+
+        $beforeLastGame->banker_total_points = null;
+        $beforeLastGame->banker_points = null;
 
         $beforeLastGame->winner = 'cancel';
 
@@ -109,7 +135,9 @@ final class BaccaratGameFakeSeeder extends Seeder
         $lastGame = BaccaratGame::query()->orderByDesc('id')->first();
         $beforeLastGame = BaccaratGame::find($lastGame->id - 2);
 
-        $beforeLastGame->winner = 'tie';
+//        $beforeLastGame->winner = 'tie';
+
+        $beforeLastGame->winner[] = 'tie';
 
         $beforeLastGame->saveQuietly();
     }
@@ -119,11 +147,42 @@ final class BaccaratGameFakeSeeder extends Seeder
         $lastGame = BaccaratGame::query()->orderByDesc('id')->first();
 
         $lastGame->result_submitted_user_id = null;
-        $lastGame->dragon_result = null;
-        $lastGame->dragon_type = null;
 
-        $lastGame->tiger_result = null;
-        $lastGame->tiger_type = null;
+        $lastGame->player_first_card_value = null;
+        $lastGame->player_first_card_type = null;
+        $lastGame->player_first_card_color = null;
+        $lastGame->player_first_card_points = null;
+
+        $lastGame->player_second_card_value = null;
+        $lastGame->player_second_card_type = null;
+        $lastGame->player_second_card_color = null;
+        $lastGame->player_second_card_points = null;
+
+        $lastGame->player_third_card_value = null;
+        $lastGame->player_third_card_type = null;
+        $lastGame->player_third_card_color = null;
+        $lastGame->player_third_card_points = null;
+
+        $lastGame->player_total_points = null;
+        $lastGame->player_points = null;
+
+        $lastGame->banker_first_card_value = null;
+        $lastGame->banker_first_card_type = null;
+        $lastGame->banker_first_card_color = null;
+        $lastGame->banker_first_card_points = null;
+
+        $lastGame->banker_second_card_value = null;
+        $lastGame->banker_second_card_type = null;
+        $lastGame->banker_second_card_color = null;
+        $lastGame->banker_second_card_points = null;
+
+        $lastGame->banker_third_card_value = null;
+        $lastGame->banker_third_card_type = null;
+        $lastGame->banker_third_card_color = null;
+        $lastGame->banker_third_card_points = null;
+
+        $lastGame->banker_total_points = null;
+        $lastGame->banker_points = null;
 
         $lastGame->winner = null;
         $lastGame->result_submitted_at = null;
@@ -140,7 +199,7 @@ final class BaccaratGameFakeSeeder extends Seeder
                 'type' => UserType::TRADER,
                 'password' => Hash::make('password'),
                 'group_id' => $tableId,
-                'two_factor_secret' => 'dragon_tiger',
+                'two_factor_secret' => 'baccarat',
             ]
         );
 

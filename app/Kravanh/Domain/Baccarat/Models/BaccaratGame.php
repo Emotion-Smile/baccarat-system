@@ -76,13 +76,13 @@ class BaccaratGame extends Model
     public function isCancel(): bool
     {
 //        return $this->winner === BaccaratGameWinner::Cancel;
-        return in_array('cancel', $this->winner) == BaccaratGameWinner::Cancel;
+        return in_array('cancel', (array)$this->winner) == BaccaratGameWinner::Cancel;
     }
 
     public function isTie(): bool
     {
 //        return $this->winner === BaccaratGameWinner::Tie;
-        return in_array('tie', $this->winner) == BaccaratGameWinner::Tie;
+        return in_array('tie', (array)$this->winner) == BaccaratGameWinner::Tie;
     }
 
     // public function ticketResult(DragonTigerTicket $ticket): string
@@ -174,9 +174,19 @@ class BaccaratGame extends Model
         }
 
         return [
-            BaccaratCard::Player.'_'.$this->dragon_color,
+            BaccaratCard::Player.'_'.$this->player_first_card_color,
+            BaccaratCard::Player.'_'.$this->player_second_card_color,
+            BaccaratCard::Player.'_'.$this->player_third_card_color,
+            BaccaratCard::Player.'_'.$this->player_first_card_points,
+            BaccaratCard::Player.'_'.$this->player_second_card_points,
+            BaccaratCard::Player.'_'.$this->player_third_card_points,
 //            BaccaratCard::Dragon.'_'.$this->dragon_range,
-            BaccaratCard::Banker.'_'.$this->tiger_color,
+            BaccaratCard::Banker.'_'.$this->banker_first_card_color,
+            BaccaratCard::Banker.'_'.$this->banker_second_card_color,
+            BaccaratCard::Banker.'_'.$this->banker_third_card_color,
+            BaccaratCard::Banker.'_'.$this->banker_first_card_points,
+            BaccaratCard::Banker.'_'.$this->banker_second_card_points,
+            BaccaratCard::Banker.'_'.$this->banker_third_card_points,
 //            BaccaratCard::Tiger.'_'.$this->tiger_range,
         ];
     }

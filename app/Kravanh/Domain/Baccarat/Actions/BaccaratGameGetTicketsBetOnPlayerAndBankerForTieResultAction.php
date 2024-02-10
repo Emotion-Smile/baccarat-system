@@ -7,7 +7,7 @@ use App\Kravanh\Domain\Baccarat\Models\BaccaratTicket;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-final class BaccaratGameGetTicketsBetOnDragonAndTigerForTieResultAction
+final class BaccaratGameGetTicketsBetOnPlayerAndBankerForTieResultAction
 {
     public function __invoke(BaccaratGame $game): Collection
     {
@@ -16,7 +16,7 @@ final class BaccaratGameGetTicketsBetOnDragonAndTigerForTieResultAction
         }
 
         return BaccaratTicket::query()
-            ->onlyBetOnDragonAndTigerTickets(game: $game)
+            ->onlyBetOnPlayerAndBankerTickets(game: $game)
             ->with('member:id,name,currency')
             ->groupBy('user_id')
             ->get([

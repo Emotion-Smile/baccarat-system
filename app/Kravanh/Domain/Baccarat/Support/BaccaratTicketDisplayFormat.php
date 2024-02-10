@@ -2,7 +2,7 @@
 
 namespace App\Kravanh\Domain\Baccarat\Support;
 
-use App\Kravanh\Domain\DragonTiger\Models\DragonTigerTicket;
+use App\Kravanh\Domain\Baccarat\Models\BaccaratTicket;
 use App\Kravanh\Support\Enums\Currency;
 use Illuminate\Support\Str;
 
@@ -10,14 +10,14 @@ final class BaccaratTicketDisplayFormat
 {
 
     public function __construct(
-        public readonly DragonTigerTicket $ticket
+        public readonly BaccaratTicket $ticket
     )
     {
     }
 
-    public static function format(DragonTigerTicket $ticket): DragonTigerTicketDisplayFormat
+    public static function format(BaccaratTicket $ticket): BaccaratTicketDisplayFormat
     {
-        return new DragonTigerTicketDisplayFormat($ticket);
+        return new BaccaratTicketDisplayFormat($ticket);
     }
 
     public function bet(): string
@@ -52,7 +52,7 @@ final class BaccaratTicketDisplayFormat
     public function gameResult(): ?string
     {
         if ($this->ticket->isCancel()) {
-            return $this->p(text: DragonTigerGameWinner::Cancel, color: 'gray');
+            return $this->p(text: BaccaratGameWinner::Cancel, color: 'gray');
         }
 
         $subResults = "";
@@ -118,7 +118,7 @@ final class BaccaratTicketDisplayFormat
     public function winLose(): string
     {
         if ($this->ticket->isCancel()) {
-            return DragonTigerGameWinner::Cancel;
+            return BaccaratGameWinner::Cancel;
         }
 
         if ($this->ticket->isLose()) {

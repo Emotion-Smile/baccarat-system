@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 final class BaccaratGameGetTicketsForCancelResultAction
 {
-    public function __invoke(int $dragonTigerGameId): Collection
+    public function __invoke(int $baccaratGameId): Collection
     {
         return BaccaratTicket::query()
             ->with('member:id,name,currency')
-            ->where('dragon_tiger_game_id', $dragonTigerGameId)
+            ->where('baccarat_game_id', $baccaratGameId)
             ->accepted()
             ->groupBy('user_id')
             ->get([

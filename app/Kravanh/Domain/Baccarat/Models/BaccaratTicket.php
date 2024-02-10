@@ -19,7 +19,7 @@ class BaccaratTicket extends Model
 {
     use HasFactory;
 
-    protected $table = 'dragon_tiger_tickets';
+    protected $table = 'baccarat_tickets';
     protected $guarded = [];
 
     protected $casts = [
@@ -54,7 +54,7 @@ class BaccaratTicket extends Model
 
     public function game(): BelongsTo
     {
-        return $this->belongsTo(BaccaratGame::class, 'dragon_tiger_game_id', 'id');
+        return $this->belongsTo(BaccaratGame::class, 'baccarat_game_id', 'id');
     }
 
     public function gameTable(): BelongsTo
@@ -75,9 +75,9 @@ class BaccaratTicket extends Model
         return $this->bet_on === $this->bet_type;
     }
 
-    public function isBetOnDragonOrTiger(): bool
+    public function isBetOnPlayerOrBanker(): bool
     {
-        return in_array($this->betOnKey(), [BaccaratGameWinner::Tiger, BaccaratGameWinner::Dragon]);
+        return in_array($this->betOnKey(), [BaccaratGameWinner::Player, BaccaratGameWinner::Banker]);
     }
 
     public function betOn(): string
@@ -89,8 +89,8 @@ class BaccaratTicket extends Model
     {
         return match ($this->betOn()) {
             'tie' => BaccaratGameWinner::Tie,
-            'player' => BaccaratGameWinner::Dragon,
-            'banker' => BaccaratGameWinner::Tiger,
+            'player' => BaccaratGameWinner::Player,
+            'banker' => BaccaratGameWinner::Banker,
             default => $this->betOn()
         };
     }
