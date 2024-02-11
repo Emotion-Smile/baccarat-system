@@ -26,6 +26,7 @@ class BaccaratGame extends Model
         'started_at' => 'datetime',
         'closed_bet_at' => 'datetime',
         'result_submitted_at' => 'datetime',
+        'winner' => 'array'
     ];
 
     public function newEloquentBuilder($query): BaccaratGameQueryBuilder

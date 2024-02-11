@@ -34,6 +34,22 @@ final class GameTableConditionData
 
     const RED_BLACK_MAX_BET_PER_TICKET = 'red_black_max_bet_per_ticket';
 
+    const PLAYER_BANKER_MIN_BET_PER_TICKET = 'player_banker_min_bet_per_ticket';
+
+    const PLAYER_BANKER_MAX_BET_PER_TICKET = 'player_banker_max_bet_per_ticket';
+
+    const ANY_TIE_MIN_BET_PER_TICKET = 'any_tie_min_bet_per_ticket';
+
+    const ANY_TIE_MAX_BET_PER_TICKET = 'any_tie_max_bet_per_ticket';
+
+    const BIG_SMALL_MIN_BET_PER_TICKET = 'big_small_min_bet_per_ticket';
+
+    const BIG_SMALL_MAX_BET_PER_TICKET = 'big_small_max_bet_per_ticket';
+
+    const PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET = 'player_pair_banker_pair_min_bet_per_ticket';
+
+    const PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET = 'player_pair_banker_pair_max_bet_per_ticket';
+
     const IS_ALLOWED = 'is_allowed';
 
     const TIE_PAYOUT_RATE = 8;
@@ -114,6 +130,14 @@ final class GameTableConditionData
                 self::TIE_MAX_BET_PER_TICKET => (int) ($data[self::TIE_MAX_BET_PER_TICKET] ?? floor($data[self::DRAGON_TIGER_MAX_BET_PER_TICKET] / self::TIE_PAYOUT_RATE)),
                 self::RED_BLACK_MIN_BET_PER_TICKET => (int) $data[self::RED_BLACK_MIN_BET_PER_TICKET],
                 self::RED_BLACK_MAX_BET_PER_TICKET => (int) $data[self::RED_BLACK_MAX_BET_PER_TICKET],
+                self::PLAYER_BANKER_MIN_BET_PER_TICKET => (int) $data[self::PLAYER_BANKER_MIN_BET_PER_TICKET],
+                self::PLAYER_BANKER_MAX_BET_PER_TICKET => (int) $data[self::PLAYER_BANKER_MAX_BET_PER_TICKET],
+                self::ANY_TIE_MIN_BET_PER_TICKET => (int) ($data[self::ANY_TIE_MIN_BET_PER_TICKET] ?? $data[self::PLAYER_BANKER_MIN_BET_PER_TICKET]),
+                self::ANY_TIE_MAX_BET_PER_TICKET => (int) ($data[self::ANY_TIE_MAX_BET_PER_TICKET] ?? floor($data[self::PLAYER_BANKER_MAX_BET_PER_TICKET] / self::TIE_PAYOUT_RATE)),
+                self::BIG_SMALL_MIN_BET_PER_TICKET => (int) $data[self::BIG_SMALL_MIN_BET_PER_TICKET],
+                self::BIG_SMALL_MAX_BET_PER_TICKET => (int) $data[self::BIG_SMALL_MAX_BET_PER_TICKET],
+                self::PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET => (int) $data[self::PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET],
+                self::PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET => (int) $data[self::PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET],
             ],
         ];
     }
@@ -184,6 +208,46 @@ final class GameTableConditionData
         return $this->betCondition[self::RED_BLACK_MAX_BET_PER_TICKET] ?? 0;
     }
 
+    public function getPlayerBankerMinBetPerTicket(): int
+    {
+        return $this->betCondition[self::PLAYER_BANKER_MIN_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getPlayerBankerMaxBetPerTicket(): int
+    {
+        return $this->betCondition[self::PLAYER_BANKER_MAX_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getAnyTieMinBetPerTicket(): int
+    {
+        return $this->betCondition[self::ANY_TIE_MIN_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getAnyTieMaxBetPerTicket(): int
+    {
+        return $this->betCondition[self::ANY_TIE_MAX_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getBigSmallMinBetPerTicket(): int
+    {
+        return $this->betCondition[self::BIG_SMALL_MIN_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getBigSmallMaxBetPerTicket(): int
+    {
+        return $this->betCondition[self::BIG_SMALL_MAX_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getPlayerPairBankerPairMinBetPerTicket(): int
+    {
+        return $this->betCondition[self::PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET] ?? 0;
+    }
+
+    public function getPlayerPairBankerPairMaxBetPerTicket(): int
+    {
+        return $this->betCondition[self::PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET] ?? 0;
+    }
+
     public function getWinLimitPerDay(): int
     {
         return $this->betCondition[self::WIN_LIMIT_PER_DAY] ?? 0;
@@ -238,6 +302,14 @@ final class GameTableConditionData
             self::TIE_MAX_BET_PER_TICKET => $this->getTieMaxBetPerTicket(),
             self::RED_BLACK_MIN_BET_PER_TICKET => $this->getRedBlackMinBetPerTicket(),
             self::RED_BLACK_MAX_BET_PER_TICKET => $this->getRedBlackMaxBetPerTicket(),
+            self::PLAYER_BANKER_MIN_BET_PER_TICKET => $this->getPlayerBankerMinBetPerTicket(),
+            self::PLAYER_BANKER_MAX_BET_PER_TICKET => $this->getPlayerBankerMaxBetPerTicket(),
+            self::ANY_TIE_MIN_BET_PER_TICKET => $this->getAnyTieMinBetPerTicket(),
+            self::ANY_TIE_MAX_BET_PER_TICKET => $this->getAnyTieMaxBetPerTicket(),
+            self::BIG_SMALL_MIN_BET_PER_TICKET => $this->getBigSmallMinBetPerTicket(),
+            self::BIG_SMALL_MAX_BET_PER_TICKET => $this->getBigSmallMaxBetPerTicket(),
+            self::PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET => $this->getPlayerPairBankerPairMinBetPerTicket(),
+            self::PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET => $this->getPlayerPairBankerPairMaxBetPerTicket(),
             default => 0
         };
     }

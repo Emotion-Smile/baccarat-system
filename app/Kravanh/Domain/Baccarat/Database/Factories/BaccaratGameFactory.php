@@ -21,7 +21,16 @@ class BaccaratGameFactory extends Factory
 
     public function definition(): array
     {
-        return [
+        $this->playerFirstType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+        $this->playerSecondType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+        $this->playerThirdType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+
+        $this->bankerFirstType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+        $this->bankerSecondType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+        $this->bankerThirdType = $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']);
+
+        //return [
+        $paylaod = [
             'game_table_id' => BaccaratFactoryHelper::make()->gameTableId(),
             'user_id' => BaccaratFactoryHelper::make()->traderId(),
             'result_submitted_user_id' => BaccaratFactoryHelper::make()->traderId(),
@@ -29,31 +38,37 @@ class BaccaratGameFactory extends Factory
             'number' => 1,
 
             'player_first_card_value' => $this->makeFirstCardPoints($this->faker->numberBetween(0, 9), 'player'),
-            'player_first_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'player_first_card_color' => $this->makeColor('player_type'),
+//            'player_first_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'player_first_card_type' => $this->playerFirstType,
+            'player_first_card_color' => $this->makeColor('player_first_card_type'),
             'player_first_card_points' => $this->playerFirstCardPoints,
             'player_second_card_value' => $this->makeSecondCardPoints($this->faker->numberBetween(0, 9), 'player'),
-            'player_second_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'player_second_card_color' => $this->makeColor('player_type'),
+//            'player_second_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'player_second_card_type' => $this->playerSecondType,
+            'player_second_card_color' => $this->makeColor('player_second_card_type'),
             'player_second_card_points' => $this->playerSecondCardPoints,
             'player_third_card_value' => $this->makeThirdCardPoints($this->faker->numberBetween(0, 9), 'player'),
-            'player_third_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'player_third_card_color' => $this->makeColor('player_type'),
+//            'player_third_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'player_third_card_type' => $this->playerThirdType,
+            'player_third_card_color' => $this->makeColor('player_third_card_type'),
             'player_third_card_points' => $this->playerThirdCardPoints,
             'player_total_points' => $this->playerFirstCardPoints + $this->playerSecondCardPoints + $this->playerThirdCardPoints,
             'player_points' => $this->playerFirstCardPoints + $this->playerSecondCardPoints + $this->playerThirdCardPoints,
 
             'banker_first_card_value' => $this->makeFirstCardPoints($this->faker->numberBetween(0, 9), 'banker'),
-            'banker_first_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'banker_first_card_color' => $this->makeColor('banker_type'),
+//            'banker_first_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'banker_first_card_type' => $this->bankerFirstType,
+            'banker_first_card_color' => $this->makeColor('banker_first_card_type'),
             'banker_first_card_points' => $this->bankerFirstCardPoints,
             'banker_second_card_value' => $this->makeSecondCardPoints($this->faker->numberBetween(0, 9), 'banker'),
-            'banker_second_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'banker_second_card_color' => $this->makeColor('banker_type'),
+//            'banker_second_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'banker_second_card_type' => $this->bankerSecondType,
+            'banker_second_card_color' => $this->makeColor('banker_second_card_type'),
             'banker_second_card_points' => $this->bankerSecondCardPoints,
             'banker_third_card_value' => $this->makeThirdCardPoints($this->faker->numberBetween(0, 9), 'banker'),
-            'banker_third_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
-            'banker_third_card_color' => $this->makeColor('banker_type'),
+//            'banker_third_card_type' => $this->faker->randomElement(['heart', 'diamond', 'club', 'spade']),
+            'banker_third_card_type' => $this->bankerThirdType,
+            'banker_third_card_color' => $this->makeColor('banker_third_card_type'),
             'banker_third_card_points' => $this->bankerThirdCardPoints,
             'banker_total_points' => $this->bankerFirstCardPoints + $this->bankerSecondCardPoints + $this->bankerThirdCardPoints,
             'banker_points' => $this->bankerFirstCardPoints + $this->bankerSecondCardPoints + $this->bankerThirdCardPoints,
@@ -62,10 +77,14 @@ class BaccaratGameFactory extends Factory
             'started_at' => Carbon::now(),
             'closed_bet_at' => Carbon::now()->addSeconds(config('kravanh.baccarat_betting_interval')),
             'result_submitted_at' => Carbon::now()->addMinutes(2),
-            'statistic' => json_encode(['some_key' => 'some_value']), // adjust as needed
+//            'statistic' => json_encode(['some_key' => 'some_value']), // adjust as needed
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()->addMinutes(2),
         ];
+
+//        dd($paylaod);
+
+        return $paylaod;
     }
 
     public function configure(): BaccaratGameFactory
@@ -135,6 +154,7 @@ class BaccaratGameFactory extends Factory
             if (!$attribute['player_third_card_value'] && !$attribute['banker_third_card_value']) {
                 $result[] = 'small';
             }
+
             return $result;
         };
     }
@@ -170,6 +190,13 @@ class BaccaratGameFactory extends Factory
             return BaccaratCard::getColor($attribute[$attributeName]);
         };
     }
+
+//    protected function makeColor(string $attributeName): Closure
+//    {
+//        return function (array $attribute) use ($attributeName) {
+//            return BaccaratCard::getColor($attribute[$attributeName]);
+//        };
+//    }
 
     public function liveGame(): BaccaratGameFactory
     {

@@ -22,6 +22,10 @@ final class BaccaratCard
 
     const Big = 'big';
 
+    const PlayerPair = 'player_pair';
+
+    const BankerPair = 'banker_pair';
+
     const Player = 'player';
 
     const Banker = 'banker';
@@ -66,6 +70,7 @@ final class BaccaratCard
      */
     public static function getColor(string $type): string
     {
+//        return $type == self::Heart || $type == self::Diamond ? 'red' : 'black';
         return self::make($type, 1)->color();
     }
 

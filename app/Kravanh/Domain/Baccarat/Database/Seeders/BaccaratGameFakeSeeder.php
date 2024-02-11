@@ -22,10 +22,10 @@ final class BaccaratGameFakeSeeder extends Seeder
     // php artisan db:seed --class=\\App\\Kravanh\\Domain\\Baccarat\\Database\\Seeders\\BaccaratGameFakeSeeder
     public function run(): void
     {
-
         $this->call(GameSeeder::class);
 
         BaccaratGame::truncate();
+
         BaccaratTicket::truncate();
 
         $member = BaccaratFactoryHelper::make()->member();
@@ -55,32 +55,39 @@ final class BaccaratGameFakeSeeder extends Seeder
         }
 
         $tableId = app(GameBaccaratGetAction::class)()->firstTableId();
+
         $trader = $this->makeTrader($tableId);
 
-        BaccaratGame::factory([
+//        BaccaratGame::factory([
+//            'user_id' => $trader->id,
+//            'game_table_id' => $tableId,
+//            'result_submitted_user_id' => $trader->id,
+//        ])->count(20)->create();
+
+        BaccaratGame::factory()->count(10)->create([
             'user_id' => $trader->id,
             'game_table_id' => $tableId,
             'result_submitted_user_id' => $trader->id,
-        ])->count(20)->create();
+        ]);
 
-        $this->makeLiveTieGame();
-        $this->makeLiveCancelGame();
-        $this->makeLiveGame();
+//        $this->makeLiveTieGame();
+//        $this->makeLiveCancelGame();
+//        $this->makeLiveGame();
 
-        foreach (BaccaratGame::all() as $game) {
-
-            $tickets = BaccaratTicket::factory(['game_table_id' => $tableId, 'baccarat_game_id' => $game->id])->count(10)->create();
-
-            foreach ($tickets as $ticket) {
-                BaccaratGameMemberBettingWithdrawBalanceAction::from(
-                    member: $member,
-                    ticket: $ticket,
-                    game: $game
-                );
-            }
-
-            app(BaccaratPayoutProcessingManagerAction::class)(baccaratGameId: $game->id);
-        }
+//        foreach (BaccaratGame::all() as $game) {
+//
+//            $tickets = BaccaratTicket::factory(['game_table_id' => $tableId, 'baccarat_game_id' => $game->id])->count(10)->create();
+//
+//            foreach ($tickets as $ticket) {
+//                BaccaratGameMemberBettingWithdrawBalanceAction::from(
+//                    member: $member,
+//                    ticket: $ticket,
+//                    game: $game
+//                );
+//            }
+//
+//            app(BaccaratPayoutProcessingManagerAction::class)(baccaratGameId: $game->id);
+//        }
 
     }
 
@@ -133,8 +140,10 @@ final class BaccaratGameFakeSeeder extends Seeder
     public function makeLiveTieGame(): void
     {
         $lastGame = BaccaratGame::query()->orderByDesc('id')->first();
-        $beforeLastGame = BaccaratGame::find($lastGame->id - 2);
 
+
+        $beforeLastGame = BaccaratGame::find($lastGame->id - 2);
+        dd($beforeLastGame);
 //        $beforeLastGame->winner = 'tie';
 
         $beforeLastGame->winner[] = 'tie';

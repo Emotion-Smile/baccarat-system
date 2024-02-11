@@ -274,7 +274,7 @@ namespace App\Kravanh\Domain\Baccarat\Models{
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereCreatedAt($value)
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerColor($value)
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerTotalPoints($value)
-     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerPoitns($value)
+     * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerPoints($value)
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame wherePlayerType($value)
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereGameTableId($value)
      * @method static \App\Kravanh\Domain\Baccarat\Support\QueryBuilders\BaccaratGameQueryBuilder|BaccaratGame whereId($value)
