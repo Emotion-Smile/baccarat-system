@@ -1,11 +1,11 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Dto\DragonTigerGameTransactionTicketPayoutMetaData;
+use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameTransactionTicketPayoutMetaData;
 use App\Kravanh\Domain\Game\Supports\GameName;
 
 test('it can create payout transaction meta correctly', function () {
 
-    $meta = DragonTigerGameTransactionTicketPayoutMetaData::from(
+    $meta = BaccaratGameTransactionTicketPayoutMetaData::from(
         ticketIds: '1,2,3',
         gameId: 1,
         amount: 1000,
@@ -15,7 +15,7 @@ test('it can create payout transaction meta correctly', function () {
         gameNumber: '1/1',
     );
 
-    expect($meta)->toBeInstanceOf(DragonTigerGameTransactionTicketPayoutMetaData::class)
+    expect($meta)->toBeInstanceOf(BaccaratGameTransactionTicketPayoutMetaData::class)
         ->and($meta->game)->toBe('dragon_tiger')
         ->and($meta->type)->toBe('payout')
         ->and($meta->gameId)->toBe(1)
@@ -25,7 +25,7 @@ test('it can create payout transaction meta correctly', function () {
         ->and($meta->currentBalance)->toBe(1000)
         ->and($meta->gameNumber)->toBe('1/1')
         ->and($meta->toMeta())->toMatchArray([
-            'game' => GameName::DragonTiger,
+            'game' => GameName::Baccarat,
             'type' => 'payout',
             'bet_id' => $meta->ticketIds,
             'match_id' => $meta->gameId,
@@ -37,7 +37,7 @@ test('it can create payout transaction meta correctly', function () {
             'currency' => $meta->currency,
         ]);
 
-    $fromMeta = DragonTigerGameTransactionTicketPayoutMetaData::fromMeta($meta->toMeta());
+    $fromMeta = BaccaratGameTransactionTicketPayoutMetaData::fromMeta($meta->toMeta());
 
     expect($fromMeta->toMeta())->toBe($meta->toMeta());
 

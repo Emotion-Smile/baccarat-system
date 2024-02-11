@@ -1,6 +1,6 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Support\Balance;
+use App\Kravanh\Domain\Baccarat\Support\Balance;
 
 test('it can format balance', function () {
 

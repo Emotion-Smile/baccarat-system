@@ -1,9 +1,9 @@
 <?php
 
 
-use App\Kravanh\Domain\DragonTiger\Dto\DragonTigerGameCreateData;
-use App\Kravanh\Domain\DragonTiger\Exceptions\DragonTigerGameUnauthorizedToCreateNewGameException;
-use App\Kravanh\Domain\DragonTiger\Support\RoundMode;
+use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameCreateData;
+use App\Kravanh\Domain\Baccarat\Exceptions\BaccaratGameUnauthorizedToCreateNewGameException;
+use App\Kravanh\Domain\Baccarat\Support\RoundMode;
 use App\Kravanh\Domain\User\Models\Trader;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,18 +17,18 @@ function mockRequest(User $user)
     return $request;
 }
 
-test('it will throwable DragonTigerGameUnauthorizedToCreateNewGame if user not a dragon tiger trader', function () {
+test('it will throwable BaccaratGameUnauthorizedToCreateNewGame if user not a dragon tiger trader', function () {
 
-    DragonTigerGameCreateData::fromRequest(mockRequest(User::factory()->create()));
+    BaccaratGameCreateData::fromRequest(mockRequest(User::factory()->create()));
 
-})->expectException(DragonTigerGameUnauthorizedToCreateNewGameException::class);
+})->expectException(BaccaratGameUnauthorizedToCreateNewGameException::class);
 
 test('it can make dragon tiger game data', function () {
 
     $trader = Trader::factory()->dragonTigerTrader()->create();
-    $gameData = DragonTigerGameCreateData::fromRequest(mockRequest($trader));
+    $gameData = BaccaratGameCreateData::fromRequest(mockRequest($trader));
 
-    expect($gameData)->toBeInstanceOf(DragonTigerGameCreateData::class)
+    expect($gameData)->toBeInstanceOf(BaccaratGameCreateData::class)
         ->and($gameData->gameTableId)->toBe($trader->group_id)
         ->and($gameData->userId)->toBe($trader->id)
         ->and($gameData->round)->toBe(1)

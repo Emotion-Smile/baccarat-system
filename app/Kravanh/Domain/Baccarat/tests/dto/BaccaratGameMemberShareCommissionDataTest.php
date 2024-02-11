@@ -1,9 +1,9 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Dto\DragonTigerGameMemberShareCommissionData;
-use App\Kravanh\Domain\DragonTiger\Dto\ShareCommissionData;
-use App\Kravanh\Domain\DragonTiger\Models\DragonTigerGame;
-use App\Kravanh\Domain\DragonTiger\tests\DragonTigerTestHelper;
+use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameMemberShareCommissionData;
+use App\Kravanh\Domain\Baccarat\Dto\ShareCommissionData;
+use App\Kravanh\Domain\Baccarat\Models\BaccaratGame;
+use App\Kravanh\Domain\Baccarat\tests\BaccaratTestHelper;
 use App\Kravanh\Domain\Game\Database\Seeders\GameSeeder;
 use App\Kravanh\Domain\User\Models\Member;
 use App\Kravanh\Support\Enums\Currency;
@@ -14,7 +14,7 @@ test('it can create member share commission data', function () {
     setupUser(Currency::USD);
     seed(GameSeeder::class);
 
-    $dragonTiger = DragonTigerGame::factory()->liveGame()->create();
+    $dragonTiger = BaccaratGame::factory()->liveGame()->create();
 
     //$2500
     $member = Member::whereName('member_1')->whereType('member')->first();
@@ -22,11 +22,11 @@ test('it can create member share commission data', function () {
     $member->saveQuietly();
 
     //10, 10, 20, 10, 50
-    DragonTigerTestHelper::setUpConditionForMember($member);
+    BaccaratTestHelper::setUpConditionForMember($member);
 
-    $shareCommission = DragonTigerGameMemberShareCommissionData::make($member);
+    $shareCommission = BaccaratGameMemberShareCommissionData::make($member);
 
-    expect($shareCommission)->toBeInstanceOf(DragonTigerGameMemberShareCommissionData::class)
+    expect($shareCommission)->toBeInstanceOf(BaccaratGameMemberShareCommissionData::class)
         ->and($shareCommission->member)->toBeInstanceOf(ShareCommissionData::class)
         ->and($shareCommission->member->share)->toBe(0)
         ->and($shareCommission->member->commission)->toBe(0.001)

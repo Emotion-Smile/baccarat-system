@@ -1,23 +1,23 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Exceptions\DragonTigerCardException;
-use App\Kravanh\Domain\DragonTiger\Support\DragonTigerCard;
+use App\Kravanh\Domain\Baccarat\Exceptions\BaccaratCardException;
+use App\Kravanh\Domain\Baccarat\Support\BaccaratCard;
 
 test('it throw exception if card range invalid', function (int $rangeNumber) {
-    DragonTigerCard::make(DragonTigerCard::Heart, $rangeNumber);
+    BaccaratCard::make(BaccaratCard::Heart, $rangeNumber);
 })
     ->with([0, 14])
-    ->expectExceptionMessage(DragonTigerCardException::invalidRange()->getMessage());
+    ->expectExceptionMessage(BaccaratCardException::invalidRange()->getMessage());
 
 test('it throw exception if card type invalid', function (string $type) {
-    DragonTigerCard::make($type, 1);
+    BaccaratCard::make($type, 1);
 })
     ->with(['unknown', ''])
-    ->expectExceptionMessage(DragonTigerCardException::invalidType()->getMessage());
+    ->expectExceptionMessage(BaccaratCardException::invalidType()->getMessage());
 
 test('ensure card type are valid', function (string $type) {
 
-    $card = DragonTigerCard::make($type, 1);
+    $card = BaccaratCard::make($type, 1);
 
     $color = match ($type) {
         'heart', 'diamond' => 'red',
@@ -31,7 +31,7 @@ test('ensure card type are valid', function (string $type) {
 
 test('ensure care range are valid', function (int $number) {
 
-    $card = DragonTigerCard::make(DragonTigerCard::Heart, $number);
+    $card = BaccaratCard::make(BaccaratCard::Heart, $number);
 
     $range = 'small';
 

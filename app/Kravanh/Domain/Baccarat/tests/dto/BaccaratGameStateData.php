@@ -1,24 +1,24 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Dto\DragonTigerGameStateData;
-use App\Kravanh\Domain\DragonTiger\Models\DragonTigerGame;
-use App\Kravanh\Domain\DragonTiger\Support\DragonTigerCard;
+use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameStateData;
+use App\Kravanh\Domain\Baccarat\Models\BaccaratGame;
+use App\Kravanh\Domain\Baccarat\Support\BaccaratCard;
 
 test('it can build dragon tiger game result submitted correctly', function () {
 
-    $game = DragonTigerGame::factory([
+    $game = BaccaratGame::factory([
         'winner' => 'dragon',
         'dragon_color' => 'red',
         'dragon_range' => 'small',
         'dragon_result' => 6,
-        'dragon_type' => DragonTigerCard::Diamond,
+        'dragon_type' => BaccaratCard::Diamond,
         'tiger_color' => 'black',
         'tiger_range' => 'small',
         'tiger_result' => 5,
-        'tiger_type' => DragonTigerCard::Club
+        'tiger_type' => BaccaratCard::Club
     ])->create();
 
-    $data = DragonTigerGameStateData::from(game: $game);
+    $data = BaccaratGameStateData::from(game: $game);
 
     expect($data->mainResult)->toBe('dragon')
         ->and($data->gameNumber)->toBe($game->gameNumber())
@@ -26,17 +26,17 @@ test('it can build dragon tiger game result submitted correctly', function () {
         ->and($data->betStatus)->toBe('close')
         ->and($data->subResult)->toBe('dragon_red,dragon_small,tiger_black,tiger_small')
         ->and($data->dragonResult)->toBe(6)
-        ->and($data->dragonType)->toBe(DragonTigerCard::Diamond)
+        ->and($data->dragonType)->toBe(BaccaratCard::Diamond)
         ->and($data->tigerResult)->toBe(5)
-        ->and($data->tigerType)->toBe(DragonTigerCard::Club);
+        ->and($data->tigerType)->toBe(BaccaratCard::Club);
 
 });
 
 test('it can build dragon tiger game result on live game', function () {
 
-    $game = DragonTigerGame::factory()->liveGame()->create();
+    $game = BaccaratGame::factory()->liveGame()->create();
 
-    $data = DragonTigerGameStateData::from(game: $game);
+    $data = BaccaratGameStateData::from(game: $game);
 
     expect($data->mainResult)->toBeEmpty()
         ->and($data->gameNumber)->toBe($game->gameNumber())
@@ -50,7 +50,7 @@ test('it can build dragon tiger game result on live game', function () {
 });
 
 test('ensure default value', function () {
-    $data = DragonTigerGameStateData::default(1);
+    $data = BaccaratGameStateData::default(1);
     expect($data->tableId)->toBe(1)
         ->and($data->gameNumber)->toBe('#')
         ->and($data->betStatus)->toBe('close')

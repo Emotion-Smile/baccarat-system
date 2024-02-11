@@ -1,6 +1,6 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Support\KHRCurrencyAmountToHuman;
+use App\Kravanh\Domain\Baccarat\Support\KHRCurrencyAmountToHuman;
 
 test('it can build human amount correctly', function () {
 

@@ -1,9 +1,9 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Support\DragonTigerBetOn;
+use App\Kravanh\Domain\Baccarat\Support\BaccaratBetOn;
 
 test('ensure all bet option are valid', function ($betOn, $betType) {
-    expect(DragonTigerBetOn::make($betOn, $betType)->isValid())->toBeTrue();
+    expect(BaccaratBetOn::make($betOn, $betType)->isValid())->toBeTrue();
 })->with([
     ['tiger', 'tiger'],
     ['tiger', 'red'],
@@ -19,7 +19,7 @@ test('ensure all bet option are valid', function ($betOn, $betType) {
 ]);
 
 test('ensure all bet option are invalid', function ($betOn, $betType) {
-    expect(DragonTigerBetOn::make($betOn, $betType)->isValid())->toBeFalse();
+    expect(BaccaratBetOn::make($betOn, $betType)->isValid())->toBeFalse();
 })->with([
     ['tiger', 'tiger1'],
     ['tiger', 'dragon'],

@@ -1,6 +1,6 @@
 <?php
 
-use App\Kravanh\Domain\DragonTiger\Support\DateFilter;
+use App\Kravanh\Domain\Baccarat\Support\DateFilter;
 use Illuminate\Support\Facades\Date;
 
 test('ensure behaviours date filter', function () {
