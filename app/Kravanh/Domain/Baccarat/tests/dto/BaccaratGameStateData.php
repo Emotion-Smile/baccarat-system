@@ -54,34 +54,38 @@ test('it can build baccarat game result submitted correctly', function () {
 
 });
 
-//test('it can build dragon tiger game result on live game', function () {
-//
-//    $game = BaccaratGame::factory()->liveGame()->create();
-//
-//    $data = BaccaratGameStateData::from(game: $game);
-//
-//    expect($data->mainResult)->toBeEmpty()
-//        ->and($data->gameNumber)->toBe($game->gameNumber())
-//        ->and($data->betStatus)->toBe('open')
-//        ->and($data->bettingInterval)->toBe($game->bettingInterval())
-//        ->and($data->subResult)->toBeEmpty()
+test('it can build baccarat game result on live game', function () {
+
+    $game = BaccaratGame::factory()->liveGame()->create();
+
+    $data = BaccaratGameStateData::from(game: $game);
+
+    expect($data->mainResult)->toBeEmpty()
+        ->and($data->gameNumber)->toBe($game->gameNumber())
+        ->and($data->betStatus)->toBe('open')
+        ->and($data->bettingInterval)->toBe($game->bettingInterval())
+        ->and($data->subResult)->toBeEmpty()
 //        ->and($data->dragonResult)->toBe(0)
 //        ->and($data->dragonType)->toBeEmpty()
 //        ->and($data->tigerResult)->toBe(0)
 //        ->and($data->tigerType)->toBeEmpty();
-//});
-//
-//test('ensure default value', function () {
-//    $data = BaccaratGameStateData::default(1);
-//    expect($data->tableId)->toBe(1)
-//        ->and($data->gameNumber)->toBe('#')
-//        ->and($data->betStatus)->toBe('close')
-//        ->and($data->bettingInterval)->toBe(0)
-//        ->and($data->mainResult)->toBeEmpty()
-//        ->and($data->subResult)->toBeEmpty()
+        ->and($data->playerPoints)->toBe(null)
+        ->and($data->bankerPoints)->toBe(null);
+});
+
+test('ensure default value', function () {
+    $data = BaccaratGameStateData::default(1);
+    expect($data->tableId)->toBe(1)
+        ->and($data->gameNumber)->toBe('#')
+        ->and($data->betStatus)->toBe('close')
+        ->and($data->bettingInterval)->toBe(0)
+        ->and($data->mainResult)->toBeEmpty()
+        ->and($data->subResult)->toBeEmpty()
 //        ->and($data->dragonResult)->toBe(0)
 //        ->and($data->dragonType)->toBeEmpty()
 //        ->and($data->tigerResult)->toBe(0)
 //        ->and($data->tigerType)->toBeEmpty();
-//
-//});
+        ->and($data->playerPoints)->toBe(null)
+        ->and($data->bankerPoints)->toBe(null);
+
+});
