@@ -155,12 +155,14 @@ class BaccaratGame extends Model
         if ($this->isLive()) {
             return '';
         }
-
-        return $this->winner;
+//        implode(",", $this->winner);
+        return $this->winner[0];
+//        return $this->winner;
     }
 
     public function subResult()
     {
+        dd(Collection::make($this->makeSubResult())->join(','));
         return Collection::make($this->makeSubResult())->join(',');
     }
 
@@ -174,21 +176,55 @@ class BaccaratGame extends Model
             return [];
         }
 
+        $result = [];
+
+        if ($this->player_points === $this->banker_points) {
+            $result = BaccaratCard::Tie;
+        }
+
+        if ($this->player_points > $this->banker_points) {
+            $result = BaccaratCard::Player;
+        }
+
+        if ($this->player_points < $this->banker_points) {
+            $result = BaccaratCard::Banker;
+        }
+
+        if ($this->banker_first_card_points === $this->banker_second_card_points) {
+            $result = BaccaratCard::BankerPair;
+        }
+
+        if ($this->player_third_card_points || $this->banker_third_card_points) {
+            $result = BaccaratCard::Big;
+        }
+
+        if (!$this->player_third_card_points || !$this->banker_third_card_points) {
+            $result = BaccaratCard::Small;
+        }
+
+//        return $result;
+
         return [
-            BaccaratCard::Player.'_'.$this->player_first_card_color,
-            BaccaratCard::Player.'_'.$this->player_second_card_color,
-            BaccaratCard::Player.'_'.$this->player_third_card_color,
-            BaccaratCard::Player.'_'.$this->player_first_card_points,
-            BaccaratCard::Player.'_'.$this->player_second_card_points,
-            BaccaratCard::Player.'_'.$this->player_third_card_points,
-//            BaccaratCard::Dragon.'_'.$this->dragon_range,
-            BaccaratCard::Banker.'_'.$this->banker_first_card_color,
-            BaccaratCard::Banker.'_'.$this->banker_second_card_color,
-            BaccaratCard::Banker.'_'.$this->banker_third_card_color,
-            BaccaratCard::Banker.'_'.$this->banker_first_card_points,
-            BaccaratCard::Banker.'_'.$this->banker_second_card_points,
-            BaccaratCard::Banker.'_'.$this->banker_third_card_points,
-//            BaccaratCard::Tiger.'_'.$this->tiger_range,
+            $this->player_points > $this->banker_points ? BaccaratCard::Player : '',
+            $this->player_points < $this->banker_points ? BaccaratCard::Banker : '',
+            $this->player_points == $this->banker_points ? BaccaratCard::Tie : '',
         ];
+
+//        return [
+//            BaccaratCard::Player.'_'.$this->player_first_card_color,
+//            BaccaratCard::Player.'_'.$this->player_second_card_color,
+//            BaccaratCard::Player.'_'.$this->player_third_card_color,
+//            BaccaratCard::Player.'_'.$this->player_first_card_points,
+//            BaccaratCard::Player.'_'.$this->player_second_card_points,
+//            BaccaratCard::Player.'_'.$this->player_third_card_points,
+////            BaccaratCard::Dragon.'_'.$this->dragon_range,
+//            BaccaratCard::Banker.'_'.$this->banker_first_card_color,
+//            BaccaratCard::Banker.'_'.$this->banker_second_card_color,
+//            BaccaratCard::Banker.'_'.$this->banker_third_card_color,
+//            BaccaratCard::Banker.'_'.$this->banker_first_card_points,
+//            BaccaratCard::Banker.'_'.$this->banker_second_card_points,
+//            BaccaratCard::Banker.'_'.$this->banker_third_card_points,
+////            BaccaratCard::Tiger.'_'.$this->tiger_range,
+//        ];
     }
 }

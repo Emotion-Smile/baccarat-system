@@ -8,7 +8,7 @@ use App\Kravanh\Domain\Game\Models\GameTable;
 use App\Kravanh\Domain\Game\Supports\GameName;
 use App\Kravanh\Domain\Game\Supports\GameType;
 
-final class GameTestHelper
+final class  GameTestHelper
 {
 
     public static function createDragonTigerGame()
@@ -50,6 +50,12 @@ final class GameTestHelper
         int   $dragonTigerMaxBetPerTicker = 500,
         int   $redBlackMinBetPerTicker = 1,
         int   $redBlackMaxBetPerTicker = 400,
+        int   $playerBankerMinBetPerTicker = 1,
+        int   $playerBankerMaxBetPerTicker = 500,
+        int   $playerPairBankerPairMinBetPerTicker = 1,
+        int   $playerPairBankerPairMaxBetPerTicker = 400,
+        int   $bigSmallMinBetPerTicker = 1,
+        int   $bigSmallMaxBetPerTicker = 400,
     ): array
     {
         return [
@@ -65,7 +71,13 @@ final class GameTestHelper
 //            Condition::TIE_MIN_BET_PER_TICKET => 2,
 //            Condition::TIE_MAX_BET_PER_TICKET => 200,
             Condition::RED_BLACK_MIN_BET_PER_TICKET => $redBlackMinBetPerTicker,
-            Condition::RED_BLACK_MAX_BET_PER_TICKET => $redBlackMaxBetPerTicker
+            Condition::RED_BLACK_MAX_BET_PER_TICKET => $redBlackMaxBetPerTicker,
+            Condition::PLAYER_BANKER_MIN_BET_PER_TICKET => $playerBankerMinBetPerTicker,
+            Condition::PLAYER_BANKER_MAX_BET_PER_TICKET => $playerBankerMaxBetPerTicker,
+            Condition::PLAYER_PAIR_BANKER_PAIR_MIN_BET_PER_TICKET => $playerPairBankerPairMinBetPerTicker,
+            Condition::PLAYER_PAIR_BANKER_PAIR_MAX_BET_PER_TICKET => $playerPairBankerPairMaxBetPerTicker,
+            Condition::BIG_SMALL_MIN_BET_PER_TICKET => $bigSmallMinBetPerTicker,
+            Condition::BIG_SMALL_MAX_BET_PER_TICKET => $bigSmallMaxBetPerTicker,
         ];
 
     }

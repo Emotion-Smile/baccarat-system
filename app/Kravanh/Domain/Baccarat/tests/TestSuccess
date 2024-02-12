@@ -51,18 +51,18 @@ controller:
     9.BaccaratGameSubmitResultControllerTest = Not Yet
     10.BaccaratGameTraderControllerTest = Not Yet
 dto:
-    1.BaccaratGameCreateDataTest = Not Yet
-    2.BaccaratGameCreateTicketDataTest = Not Yet
-    3.BaccaratGameMemberBetDataTest = Not Yet
-    4.BaccaratGameMemberShareCommissionDataTest = Not Yet
+    1.BaccaratGameCreateDataTest = Passed
+    2.BaccaratGameCreateTicketDataTest = Passed
+    3.BaccaratGameMemberBetDataTest = Passed
+    4.BaccaratGameMemberShareCommissionDataTest = Passed
     5.BaccaratGameStateData = Not Yet
     6.BaccaratGameSubmitResultDataTest = Not Yet
     7.BaccaratGameTransactionTicketPayoutMetaDataTest = Passed
 1.BaccaratBetOnTest = Passed
 2.BaccaratCardTest = Passed
-3.BaccaratGameGetLastRoundActionTest = Failed
-4.BaccaratGameRoundNumberIsDuplicatedActionTest = Failed
+3.BaccaratGameGetLastRoundActionTest = Passed
+4.BaccaratGameRoundNumberIsDuplicatedActionTest = Passed
 5.BalanceTest = Passed
 6.DateFilterTest = Passed
-7.EnsureBaccaratGameTableIdOnMemberTest = Failed
+7.EnsureBaccaratGameTableIdOnMemberTest = Passed
 8.KHRCurrencyAmountToHumanTest = Passed

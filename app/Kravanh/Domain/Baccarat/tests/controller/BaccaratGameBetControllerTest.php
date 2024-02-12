@@ -13,9 +13,9 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;
 use function Pest\Laravel\seed;
 
-test('validates required fields for Dragon Tiger betting', function () {
+test('validates required fields for baccarat betting', function () {
     actingAs(Member::factory()->create())
-        ->postJson(route('dragon-tiger.betting'))
+        ->postJson(route('baccarat.betting'))
         ->assertJsonValidationErrors(['amount', 'betOn', 'betType']);
 });
 
@@ -26,10 +26,10 @@ test('Ensure message type failed is return if validation failed', function () {
     Cache::put('lang:'.$member->id, 'en');
 
     actingAs($member)
-        ->postJson(route('dragon-tiger.betting'), [
+        ->postJson(route('baccarat.betting'), [
             'amount' => 100,
-            'betOn' => 'tiger',
-            'betType' => 'tiger',
+            'betOn' => 'banker',
+            'betType' => 'banker',
         ])->assertJson([
             'type' => 'failed',
             'message' => 'Oop, something went wrong your account not allow',
@@ -48,10 +48,10 @@ test('Ensure message success is return if betting succeed', function () {
 
     actingAs($member);
 
-    $response = postJson(route('dragon-tiger.betting'), [
+    $response = postJson(route('baccarat.betting'), [
         'amount' => 100,
-        'betOn' => 'tiger',
-        'betType' => 'tiger',
+        'betOn' => 'banker',
+        'betType' => 'banker',
     ]);
 
     expect($response->json(['type']))->toBe('ok')
