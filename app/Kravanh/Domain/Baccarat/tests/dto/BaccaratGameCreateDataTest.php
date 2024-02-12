@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameCreateData;
 use App\Kravanh\Domain\Baccarat\Exceptions\BaccaratGameUnauthorizedToCreateNewGameException;
 use App\Kravanh\Domain\Baccarat\Support\RoundMode;
@@ -17,15 +16,15 @@ function mockRequest(User $user)
     return $request;
 }
 
-test('it will throwable BaccaratGameUnauthorizedToCreateNewGame if user not a dragon tiger trader', function () {
+test('it will throwable BaccaratGameUnauthorizedToCreateNewGame if user not a baccarat trader', function () {
 
     BaccaratGameCreateData::fromRequest(mockRequest(User::factory()->create()));
 
 })->expectException(BaccaratGameUnauthorizedToCreateNewGameException::class);
 
-test('it can make dragon tiger game data', function () {
+test('it can make baccarat game data', function () {
 
-    $trader = Trader::factory()->dragonTigerTrader()->create();
+    $trader = Trader::factory()->baccaratTrader()->create();
     $gameData = BaccaratGameCreateData::fromRequest(mockRequest($trader));
 
     expect($gameData)->toBeInstanceOf(BaccaratGameCreateData::class)

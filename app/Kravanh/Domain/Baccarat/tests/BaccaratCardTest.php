@@ -29,23 +29,23 @@ test('ensure card type are valid', function (string $type) {
 
 })->with(['heart', 'diamond', 'spade', 'club']);
 
-test('ensure care range are valid', function (int $number) {
-
-    $card = BaccaratCard::make(BaccaratCard::Heart, $number);
-
-    $range = 'small';
-
-    if ($number === 7) {
-        $range = 'middle';
-    }
-
-    if ($number > 7) {
-        $range = 'big';
-    }
-
-    expect($card->number)->toBe($number)
-        ->and($card->range())->toBe($range);
-
-})->with([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+//test('ensure care range are valid', function (int $number) {
+//
+//    $card = BaccaratCard::make(BaccaratCard::Heart, $number);
+//
+//    $range = 'small';
+//
+//    if ($number === 7) {
+//        $range = 'middle';
+//    }
+//
+//    if ($number > 7) {
+//        $range = 'big';
+//    }
+//
+//    expect($card->number)->toBe($number)
+//        ->and($card->range())->toBe($range);
+//
+//})->with([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
 
 

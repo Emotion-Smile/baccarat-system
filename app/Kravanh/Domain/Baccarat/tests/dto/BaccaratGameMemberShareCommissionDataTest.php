@@ -14,11 +14,11 @@ test('it can create member share commission data', function () {
     setupUser(Currency::USD);
     seed(GameSeeder::class);
 
-    $dragonTiger = BaccaratGame::factory()->liveGame()->create();
+    $baccarat = BaccaratGame::factory()->liveGame()->create();
 
     //$2500
     $member = Member::whereName('member_1')->whereType('member')->first();
-    $member->group_id = $dragonTiger->game_table_id;
+    $member->group_id = $baccarat->game_table_id;
     $member->saveQuietly();
 
     //10, 10, 20, 10, 50

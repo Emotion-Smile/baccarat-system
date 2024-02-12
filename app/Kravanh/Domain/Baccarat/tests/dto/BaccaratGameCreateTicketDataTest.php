@@ -11,7 +11,7 @@ use App\Kravanh\Support\Enums\Currency;
 use function Pest\Laravel\seed;
 
 
-test('it can create dragon tiger game ticket data', function () {
+test('it can create baccarat game ticket data', function () {
 
     $game = BaccaratGame::factory()->liveGame()->create();
 
@@ -22,8 +22,8 @@ test('it can create dragon tiger game ticket data', function () {
     $memberBetData = BaccaratGameMemberBetData::make(
         member: $member,
         amount: 0,
-        betOn: BaccaratCard::Tiger,
-        betType: BaccaratCard::Tiger,
+        betOn: BaccaratCard::Banker,
+        betType: BaccaratCard::Banker,
         ip: '127.0.0.1'
     );
 
@@ -33,9 +33,9 @@ test('it can create dragon tiger game ticket data', function () {
         ->and($ticketData->member)->toBe($member)
         ->and($ticketData->payoutRate)->toBe(1.0)
         ->and($ticketData->gameTableId)->toBe($game->game_table_id)
-        ->and($ticketData->dragonTigerGameId)->toBe($game->id)
-        ->and($ticketData->betOn)->toBe(BaccaratCard::Tiger)
-        ->and($ticketData->betType)->toBe(BaccaratCard::Tiger)
+        ->and($ticketData->baccaratGameId)->toBe($game->id)
+        ->and($ticketData->betOn)->toBe(BaccaratCard::Banker)
+        ->and($ticketData->betType)->toBe(BaccaratCard::Banker)
         ->and($ticketData->ip)->toBe('127.0.0.1');
 
 
@@ -63,8 +63,8 @@ test('it can build share and commission', closure: function () {
     $memberBetData = BaccaratGameMemberBetData::make(
         member: $member,
         amount: 0,
-        betOn: BaccaratCard::Tiger,
-        betType: BaccaratCard::Tiger,
+        betOn: BaccaratCard::Banker,
+        betType: BaccaratCard::Banker,
         ip: '127.0.0.1'
     );
 

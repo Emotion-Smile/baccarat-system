@@ -16,7 +16,7 @@ test('it can create payout transaction meta correctly', function () {
     );
 
     expect($meta)->toBeInstanceOf(BaccaratGameTransactionTicketPayoutMetaData::class)
-        ->and($meta->game)->toBe('dragon_tiger')
+        ->and($meta->game)->toBe('baccarat')
         ->and($meta->type)->toBe('payout')
         ->and($meta->gameId)->toBe(1)
         ->and($meta->amount)->toBe(1000)

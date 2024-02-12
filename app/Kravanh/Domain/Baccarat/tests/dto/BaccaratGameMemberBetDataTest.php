@@ -12,8 +12,8 @@ test('it cannot create ticket data if live game is not available', function () {
     BaccaratGameMemberBetData::make(
         member: Member::factory()->create(),
         amount: 0,
-        betOn: BaccaratCard::Tiger,
-        betType: BaccaratCard::Tiger,
+        betOn: BaccaratCard::Banker,
+        betType: BaccaratCard::Banker,
         ip: ''
     );
 

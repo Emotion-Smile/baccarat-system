@@ -16,7 +16,7 @@ final class BaccaratGameCreateTicketData
     public function __construct(
         public readonly Member $member,
         public readonly int $gameTableId,
-        public readonly int $dragonTigerGameId,
+        public readonly int $baccaratGameId,
         public readonly float|int $amount,
         public readonly string $betOn,
         public readonly string $betType,
@@ -31,7 +31,7 @@ final class BaccaratGameCreateTicketData
         return new BaccaratGameCreateTicketData(
             member: $data->member,
             gameTableId: $data->game->game_table_id,
-            dragonTigerGameId: $data->game->id,
+            baccaratGameId: $data->game->id,
             amount: $data->amount,
             betOn: $data->betOn,
             betType: $data->betType,

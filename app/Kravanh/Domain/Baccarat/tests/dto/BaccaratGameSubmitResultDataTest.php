@@ -58,63 +58,127 @@ test('it can create baccarat game submit result data', function () {
 
 });
 
-//test('ensure winner', function () {
-//
-//    $trader = Trader::factory()->dragonTigerTrader()->create();
-//
-//    $data = BaccaratGameSubmitResultData::make(
-//        user: $trader,
-////        dragonTigerGameId: 1,
-////        dragonResult: 8,
-////        dragonType: BaccaratCard::Heart,
-////        tigerResult: 8,
-////        tigerType: BaccaratCard::Club
-//    );
-//
-//    expect($data->winner())->toBe(BaccaratGameWinner::Tie);
-//
-//    $data = BaccaratGameSubmitResultData::make(
-//        user: $trader,
-////        dragonTigerGameId: 1,
-////        dragonResult: 10,
-////        dragonType: BaccaratCard::Heart,
-////        tigerResult: 2,
-////        tigerType: BaccaratCard::Club
-//    );
-//
-//    expect($data->winner())->toBe(BaccaratGameWinner::Player);
-//
-//});
-//
-//test('ensure card type and range number are valid', function () {
-//    $trader = Trader::factory()->dragonTigerTrader()->create();
-//
-//    try {
-//        BaccaratGameSubmitResultData::make(
-//            user: $trader,
-////            dragonTigerGameId: 1,
-////            dragonResult: 8,
-////            dragonType: 'unknown',
-////            tigerResult: 8,
-////            tigerType: BaccaratCard::Club
-//        );
-//    } catch (Exception $e) {
-//        expect($e->getMessage())->toBe(BaccaratCardException::invalidType()->getMessage());
-//    }
-//
-//    try {
-//        BaccaratGameSubmitResultData::make(
-//            user: $trader,
-////            dragonTigerGameId: 1,
-////            dragonResult: 13,
-////            dragonType: BaccaratCard::Heart,
-////            tigerResult: 0,
-////            tigerType: BaccaratCard::Club
-//        );
-//    } catch (Exception $e) {
-//        expect($e->getMessage())->toBe(BaccaratCardException::invalidRange()->getMessage());
-//    }
-//
-//});
+test('ensure winner', function () {
+
+    $trader = Trader::factory()->baccaratTrader()->create();
+
+    $data = BaccaratGameSubmitResultData::make(
+        user: $trader,
+//        dragonTigerGameId: 1,
+//        dragonResult: 8,
+//        dragonType: BaccaratCard::Heart,
+//        tigerResult: 8,
+//        tigerType: BaccaratCard::Club
+
+        baccaratGameId: 1,
+        playerFirstCardValue: 4,
+        playerFirstCardType: BaccaratCard::Heart,
+        playerSecondCardValue: 4,
+        playerSecondCardType: BaccaratCard::Spade,
+        playerThirdCardValue: 1,
+        playerThirdCardType: BaccaratCard::Club,
+        playerPoints: 9,
+        bankerFirstCardValue: 2,
+        bankerFirstCardType: BaccaratCard::Diamond,
+        bankerSecondCardValue: 4,
+        bankerSecondCardType: BaccaratCard::Heart,
+        bankerThirdCardValue: 2,
+        bankerThirdCardType: BaccaratCard::Club,
+        bankerPoints: 8
+    );
+
+    expect($data->winner())->toBe(BaccaratGameWinner::Tie);
+
+    $data = BaccaratGameSubmitResultData::make(
+        user: $trader,
+//        dragonTigerGameId: 1,
+//        dragonResult: 10,
+//        dragonType: BaccaratCard::Heart,
+//        tigerResult: 2,
+//        tigerType: BaccaratCard::Club
+
+        baccaratGameId: 1,
+        playerFirstCardValue: 4,
+        playerFirstCardType: BaccaratCard::Heart,
+        playerSecondCardValue: 4,
+        playerSecondCardType: BaccaratCard::Spade,
+        playerThirdCardValue: 1,
+        playerThirdCardType: BaccaratCard::Club,
+        playerPoints: 9,
+        bankerFirstCardValue: 2,
+        bankerFirstCardType: BaccaratCard::Diamond,
+        bankerSecondCardValue: 4,
+        bankerSecondCardType: BaccaratCard::Heart,
+        bankerThirdCardValue: 2,
+        bankerThirdCardType: BaccaratCard::Club,
+        bankerPoints: 8
+    );
+
+    expect($data->winner())->toBe(BaccaratGameWinner::Player);
+
+});
+
+test('ensure card type and range number are valid', function () {
+    $trader = Trader::factory()->baccaratTrader()->create();
+
+    try {
+        BaccaratGameSubmitResultData::make(
+            user: $trader,
+//            dragonTigerGameId: 1,
+//            dragonResult: 8,
+//            dragonType: 'unknown',
+//            tigerResult: 8,
+//            tigerType: BaccaratCard::Club
+
+            baccaratGameId: 1,
+            playerFirstCardValue: 4,
+            playerFirstCardType: BaccaratCard::Heart,
+            playerSecondCardValue: 4,
+            playerSecondCardType: BaccaratCard::Spade,
+            playerThirdCardValue: 1,
+            playerThirdCardType: BaccaratCard::Club,
+            playerPoints: 9,
+            bankerFirstCardValue: 2,
+            bankerFirstCardType: BaccaratCard::Diamond,
+            bankerSecondCardValue: 4,
+            bankerSecondCardType: BaccaratCard::Heart,
+            bankerThirdCardValue: 2,
+            bankerThirdCardType: BaccaratCard::Club,
+            bankerPoints: 8
+        );
+    } catch (Exception $e) {
+        expect($e->getMessage())->toBe(BaccaratCardException::invalidType()->getMessage());
+    }
+
+    try {
+        BaccaratGameSubmitResultData::make(
+            user: $trader,
+//            dragonTigerGameId: 1,
+//            dragonResult: 13,
+//            dragonType: BaccaratCard::Heart,
+//            tigerResult: 0,
+//            tigerType: BaccaratCard::Club
+
+            baccaratGameId: 1,
+            playerFirstCardValue: 4,
+            playerFirstCardType: BaccaratCard::Heart,
+            playerSecondCardValue: 4,
+            playerSecondCardType: BaccaratCard::Spade,
+            playerThirdCardValue: 1,
+            playerThirdCardType: BaccaratCard::Club,
+            playerPoints: 9,
+            bankerFirstCardValue: 2,
+            bankerFirstCardType: BaccaratCard::Diamond,
+            bankerSecondCardValue: 4,
+            bankerSecondCardType: BaccaratCard::Heart,
+            bankerThirdCardValue: 2,
+            bankerThirdCardType: BaccaratCard::Club,
+            bankerPoints: 8
+        );
+    } catch (Exception $e) {
+        expect($e->getMessage())->toBe(BaccaratCardException::invalidRange()->getMessage());
+    }
+
+});
 
 

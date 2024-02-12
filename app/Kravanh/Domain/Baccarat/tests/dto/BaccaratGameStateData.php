@@ -4,18 +4,38 @@ use App\Kravanh\Domain\Baccarat\Dto\BaccaratGameStateData;
 use App\Kravanh\Domain\Baccarat\Models\BaccaratGame;
 use App\Kravanh\Domain\Baccarat\Support\BaccaratCard;
 
-test('it can build dragon tiger game result submitted correctly', function () {
+test('it can build baccarat game result submitted correctly', function () {
 
     $game = BaccaratGame::factory([
-        'winner' => 'dragon',
-        'dragon_color' => 'red',
-        'dragon_range' => 'small',
-        'dragon_result' => 6,
-        'dragon_type' => BaccaratCard::Diamond,
-        'tiger_color' => 'black',
-        'tiger_range' => 'small',
-        'tiger_result' => 5,
-        'tiger_type' => BaccaratCard::Club
+        'winner' => ['player', 'big'],
+        'player_first_card_value' => 1,
+        'player_first_card_type' => BaccaratCard::Heart,
+        'player_first_card_color' => 'red',
+        'player_first_card_points' => 1,
+        'player_second_card_value' => 2,
+        'player_second_card_type' => BaccaratCard::Diamond,
+        'player_second_card_color' => 'red',
+        'player_second_card_points' => 2,
+        'player_third_card_value' => 3,
+        'player_third_card_type' => BaccaratCard::Diamond,
+        'player_third_card_color' => 'red',
+        'player_third_card_points' => 3,
+        'player_total_points' => 6,
+        'player_points' => 6,
+        'banker_first_card_value' => 1,
+        'banker_first_card_type' => BaccaratCard::Club,
+        'banker_first_card_color' => 'black',
+        'banker_first_card_points' => 1,
+        'banker_second_card_value' => 2,
+        'banker_second_card_type' => BaccaratCard::Spade,
+        'banker_second_card_color' => 'black',
+        'banker_second_card_points' => 2,
+        'banker_third_card_value' => 2,
+        'banker_third_card_type' => BaccaratCard::Diamond,
+        'banker_third_card_color' => 'red',
+        'banker_third_card_points' => 2,
+        'banker_total_points' => 5,
+        'banker_points' => 5,
     ])->create();
 
     $data = BaccaratGameStateData::from(game: $game);

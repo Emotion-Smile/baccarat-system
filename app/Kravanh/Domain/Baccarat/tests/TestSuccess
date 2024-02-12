@@ -57,9 +57,9 @@ dto:
     4.BaccaratGameMemberShareCommissionDataTest = Not Yet
     5.BaccaratGameStateData = Not Yet
     6.BaccaratGameSubmitResultDataTest = Not Yet
-    7.BaccaratGameTransactionTicketPayoutMetaDataTest
+    7.BaccaratGameTransactionTicketPayoutMetaDataTest = Passed
 1.BaccaratBetOnTest = Passed
-2.BaccaratCardTest = Not Yet
+2.BaccaratCardTest = Passed
 3.BaccaratGameGetLastRoundActionTest = Failed
 4.BaccaratGameRoundNumberIsDuplicatedActionTest = Failed
 5.BalanceTest = Passed

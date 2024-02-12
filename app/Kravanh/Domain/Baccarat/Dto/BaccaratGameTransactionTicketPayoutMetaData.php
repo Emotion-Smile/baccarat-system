@@ -19,7 +19,7 @@ final class BaccaratGameTransactionTicketPayoutMetaData
         public readonly string $currency,
     )
     {
-        $this->game = GameName::DragonTiger->value;
+        $this->game = GameName::Baccarat->value;
     }
 
     public static function fromMeta(array $meta): BaccaratGameTransactionTicketPayoutMetaData
@@ -38,7 +38,7 @@ final class BaccaratGameTransactionTicketPayoutMetaData
     public function toMeta(): array
     {
         return [
-            'game' => GameName::DragonTiger,
+            'game' => GameName::Baccarat,
             'type' => $this->type,
             'bet_id' => $this->ticketIds,
             'match_id' => $this->gameId,

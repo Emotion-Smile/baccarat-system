@@ -17,6 +17,7 @@ uses(Tests\TestCase::class)->in(
     'IpInfo',
     'Game',
     'DragonTiger',
+    'Baccarat',
     '../app/Kravanh/Domain/IpInfo/tests',
     '../app/Kravanh/Domain/GroupUser/tests',
     '../app/Kravanh/Domain/Environment/tests',
@@ -25,6 +26,7 @@ uses(Tests\TestCase::class)->in(
     '../app/Kravanh/Domain/BetCondition/tests',
     '../app/Kravanh/Domain/Game/tests',
     '../app/Kravanh/Domain/DragonTiger/tests',
+    '../app/Kravanh/Domain/Baccarat/tests',
     '../app/Kravanh/Domain/Integration/Tests',
     '../nova-components/Report/tests'
 );
