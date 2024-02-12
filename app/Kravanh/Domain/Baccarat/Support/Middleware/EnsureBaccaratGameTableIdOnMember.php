@@ -13,7 +13,7 @@ final class EnsureBaccaratGameTableIdOnMember
 
         $user = $request->user();
 
-        if ($user->isBaccaratGameTable() && $user->isDragonTraderGameTableAvailable()) {
+        if ($user->isBaccaratGameTable() && $user->isBaccaratTraderGameTableAvailable()) {
 
             return $next($request);
         }
@@ -27,7 +27,7 @@ final class EnsureBaccaratGameTableIdOnMember
     {
         $game = app(GameBaccaratGetAction::class)();
         $user->group_id = $game->firstTableId();
-        $user->two_factor_secret = 'dragon_tiger';
+        $user->two_factor_secret = 'baccarat';
         $user->saveQuietly();
     }
 }

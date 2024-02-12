@@ -7,24 +7,19 @@ use App\Kravanh\Domain\Baccarat\Support\BaccaratCard as Card;
 
 final class BaccaratBetOn
 {
-    const Dragon = Card::Dragon . '_' . Card::Dragon;
-    const Tiger = Card::Tiger . '_' . Card::Tiger;
+    const Player = Card::Player . '_' . Card::Player;
+    const Banker = Card::Banker . '_' . Card::Banker;
     const Tie = Card::Tie . '_' . Card::Tie;
 
-    const DragonRed = Card::Dragon . '_' . Card::Red;
-    const DragonBlack = Card::Dragon . '_' . Card::Black;
-    const TigerRed = Card::Tiger . '_' . Card::Red;
-    const TigerBlack = Card::Tiger . '_' . Card::Black;
-
-    const DragonBig = Card::Dragon . '_' . Card::Big;
-    const DragonSmall = Card::Dragon . '_' . Card::Small;
-    const TigerBig = Card::Tiger . '_' . Card::Big;
-
-    const TigerSmall = Card::Tiger . '_' . Card::Small;
+    const Big = Card::Big . '_' . Card::Big;
+    const Small = Card::Small . '_' . Card::Small;
+    const PlayerPair = Card::PlayerPair . '_' . Card::PlayerPair;
+    const BankerPair = Card::BankerPair . '_' . Card::BankerPair;
 
     const options = [
-        self::Dragon, self::DragonRed, self::DragonBlack, self::DragonSmall, self::DragonBig,
-        self::Tiger, self::TigerRed, self::TigerBlack, self::TigerSmall, self::TigerBig,
+        self::Player, self::PlayerPair,
+        self::Banker, self::BankerPair,
+        self::Big, self::Small,
         self::Tie
     ];
 
@@ -68,47 +63,49 @@ final class BaccaratBetOn
         return self::Tie === $this->bet();
     }
 
-    public function isBetOnDragon(): bool
+    public function isBetOnPlayer(): bool
     {
-        return self::Dragon === $this->bet();
+        return self::Player === $this->bet();
     }
 
-    public function isBetOnDragonRed(): bool
+    public function isBetOnPlayerPair(): bool
     {
-        return self::DragonRed === $this->bet();
+        return self::PlayerPair === $this->bet();
     }
 
-    public function isBetOnDragonBlack(): bool
+    public function isBetOnBanker(): bool
     {
-        return self::DragonBlack === $this->bet();
+        return self::Banker === $this->bet();
     }
 
-    public function isBetOnTiger(): bool
+    public function isBetOnBankerPair(): bool
     {
-        return self::Tiger === $this->bet();
+        return self::BankerPair === $this->bet();
     }
 
-    public function isBetOnTigerRed(): bool
+    public function isBetOnBig(): bool
     {
-        return self::TigerRed === $this->bet();
+        return self::Big === $this->bet();
     }
 
-    public function isBetOnTigerBlack(): bool
+    public function isBetOnSmall(): bool
     {
-        return self::TigerBlack === $this->bet();
+        return self::Small === $this->bet();
     }
 
-    public function isBetOnDragonOrTiger(): bool
+    public function isBetOnPlayerOrBanker(): bool
     {
-        return $this->isBetOnDragon() || $this->isBetOnTiger();
+        return $this->isBetOnPlayer() || $this->isBetOnBanker();
     }
 
-    public function isBetOnRedOrBlack(): bool
+    public function isBetOnBigOrSmall(): bool
     {
-        return $this->isBetOnDragonRed()
-            || $this->isBetOnDragonBlack()
-            || $this->isBetOnTigerRed()
-            || $this->isBetOnTigerBlack();
+        return $this->isBetOnBig() || $this->isBetOnSmall();
+    }
+
+    public function isBetOnPlayerPairOrBankerPair(): bool
+    {
+        return $this->isBetOnPlayerPair() || $this->isBetOnBankerPair();
     }
 
 }

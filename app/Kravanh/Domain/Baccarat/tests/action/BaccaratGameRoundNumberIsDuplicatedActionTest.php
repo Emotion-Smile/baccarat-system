@@ -3,14 +3,14 @@
 use App\Kravanh\Domain\Baccarat\Actions\BaccaratGameRoundNumberIsDuplicatedAction;
 use App\Kravanh\Domain\Baccarat\Models\BaccaratGame;
 
-test('it can check baccarat game duplicate round number', function () {
+test('it can check dragon tiger game duplicate round number', function () {
 
     $isDuplicated = (new BaccaratGameRoundNumberIsDuplicatedAction())(gameTableId: 1, round: 1);
     expect($isDuplicated)->toBeFalse();
 
-    $baccaratGame = BaccaratGame::factory(['game_table_id' => 1, 'round' => 4])->create();
+    $dragonTigerGame = BaccaratGame::factory(['game_table_id' => 1, 'round' => 4])->create();
     $isDuplicated = (new BaccaratGameRoundNumberIsDuplicatedAction())(gameTableId: 1, round: 4);
-    $baccaratGame->delete();
+    $dragonTigerGame->delete();
     expect($isDuplicated)->toBeTrue();
 
 

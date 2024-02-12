@@ -3,7 +3,7 @@
 use App\Kravanh\Domain\Baccarat\Actions\BaccaratGameGetLastRoundAction;
 use App\Kravanh\Domain\Baccarat\Models\BaccaratGame;
 
-test('it can get dragon tiger game last number', function () {
+test('it can get baccarat game last number', function () {
     $lastRound = (new BaccaratGameGetLastRoundAction())(1);
 
     expect($lastRound)->toBeInt()

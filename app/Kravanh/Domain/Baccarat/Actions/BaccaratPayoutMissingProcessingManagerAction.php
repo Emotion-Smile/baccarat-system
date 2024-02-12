@@ -10,17 +10,17 @@ use Illuminate\Support\Collection;
 final class BaccaratPayoutMissingProcessingManagerAction
 {
 
-    public function __invoke(int $dragonTigerGameId): void
+    public function __invoke(int $baccaratGameId): void
     {
 
-        $game = BaccaratGame::find($dragonTigerGameId);
+        $game = BaccaratGame::find($baccaratGameId);
 
         if ($game->isLive() || $game->isCancel()) {
             return;
         }
 
         $ticketIdsAlreadyPayout = app(BaccaratGameGetDepositedPayoutTicketIdsAction::class)(
-            dragonTigerGameId: $dragonTigerGameId
+            dragonTigerGameId: $baccaratGameId
         );
 
         $this->processGamePayouts(
@@ -78,7 +78,7 @@ final class BaccaratPayoutMissingProcessingManagerAction
 
     private function handleTiePayout(BaccaratGame $game, array $ticketIdsAlreadyPayout): Collection
     {
-        $tickets = app(BaccaratGameGetTicketsBetOnDragonAndTigerForTieResultAction::class)(game: $game);
+        $tickets = app(BaccaratGameGetTicketsBetOnPlayerAndBankerForTieResultAction::class)(game: $game);
 
         return $this->processPayout(
             game: $game,

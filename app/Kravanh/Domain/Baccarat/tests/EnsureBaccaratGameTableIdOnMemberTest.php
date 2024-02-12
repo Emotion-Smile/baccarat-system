@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use function Pest\Laravel\seed;
 
-it('allows request to proceed when user is on dragon tiger game table and it is available', function () {
+it('allows request to proceed when user is on baccarat game table and it is available', function () {
 
     $user = Mockery::mock();
     $user->shouldReceive('isBaccaratGameTable')->andReturn(true);
-    $user->shouldReceive('isDragonTraderGameTableAvailable')->andReturn(true);
+    $user->shouldReceive('isBaccaratTraderGameTableAvailable')->andReturn(true);
 
     $request = new Request();
     $request->setUserResolver(fn () => $user);
@@ -22,11 +22,11 @@ it('allows request to proceed when user is on dragon tiger game table and it is 
     expect($response)->toBe('next');
 });
 
-it('sets up user for game when user is not on dragon tiger game table', function () {
+it('sets up user for game when user is not on baccarat game table', function () {
     seed(GameSeeder::class);
     $user = Mockery::mock();
     $user->shouldReceive('isBaccaratGameTable')->andReturn(false);
-    $user->shouldReceive('isDragonTraderGameTableAvailable')->andReturn(true);
+    $user->shouldReceive('isBaccaratTraderGameTableAvailable')->andReturn(true);
     $user->shouldReceive('saveQuietly');
 
     $request = new Request();
@@ -39,13 +39,13 @@ it('sets up user for game when user is not on dragon tiger game table', function
     expect($response)->toBe('next');
 });
 
-it('sets up user for game when dragon tiger game table is not available', function () {
+it('sets up user for game when baccarat game table is not available', function () {
 
     seed(GameSeeder::class);
 
     $user = Mockery::mock();
     $user->shouldReceive('isBaccaratGameTable')->andReturn(true);
-    $user->shouldReceive('isDragonTraderGameTableAvailable')->andReturn(false);
+    $user->shouldReceive('isBaccaratTraderGameTableAvailable')->andReturn(false);
     $user->shouldReceive('saveQuietly');
 
     $request = new Request();

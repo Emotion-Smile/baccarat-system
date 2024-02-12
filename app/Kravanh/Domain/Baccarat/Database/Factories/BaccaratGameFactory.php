@@ -82,8 +82,6 @@ class BaccaratGameFactory extends Factory
             'updated_at' => Carbon::now()->addMinutes(2),
         ];
 
-//        dd($paylaod);
-
         return $paylaod;
     }
 
