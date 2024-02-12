@@ -192,7 +192,7 @@ final class BaccaratGameSubmitResultData
         if ($this->bankerFirstCardValue === $this->bankerSecondCardValue) {
             $results[] = BaccaratGameWinner::BankerPair;
         }
-
+//        dd(implode(',', $results));
         return $results;
     }
 }

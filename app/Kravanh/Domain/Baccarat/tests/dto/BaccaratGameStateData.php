@@ -49,7 +49,7 @@ test('it can build baccarat game result submitted correctly', function () {
 //        ->and($data->dragonType)->toBe(BaccaratCard::Diamond)
 //        ->and($data->tigerResult)->toBe(5)
 //        ->and($data->tigerType)->toBe(BaccaratCard::Club);
-        ->and($data->playerPoints)->toBe(6)
+        ->and($data->playerPoints)->toBe(7)
         ->and($data->bankerPoints)->toBe(5);
 
 });

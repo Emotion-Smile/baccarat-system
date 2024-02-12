@@ -154,6 +154,7 @@ class BaccaratGameFactory extends Factory
             }
 
             return $result;
+//            return implode(',', $result);
         };
     }
 

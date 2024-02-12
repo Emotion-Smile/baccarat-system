@@ -160,10 +160,10 @@ class BaccaratGame extends Model
 //        return $this->winner;
     }
 
-    public function subResult()
+    public function subResult(): string
     {
-        dd(Collection::make($this->makeSubResult())->join(','));
-        return Collection::make($this->makeSubResult())->join(',');
+//        return Collection::make($this->makeSubResult())->join(',');
+        return implode(",", $this->makeSubResult());
     }
 
     public function makeSubResult(): array
@@ -179,36 +179,32 @@ class BaccaratGame extends Model
         $result = [];
 
         if ($this->player_points === $this->banker_points) {
-            $result = BaccaratCard::Tie;
+            $result[] = BaccaratCard::Tie;
         }
 
         if ($this->player_points > $this->banker_points) {
-            $result = BaccaratCard::Player;
+            $result[] = BaccaratCard::Player;
         }
 
         if ($this->player_points < $this->banker_points) {
-            $result = BaccaratCard::Banker;
+            $result[] = BaccaratCard::Banker;
         }
 
         if ($this->banker_first_card_points === $this->banker_second_card_points) {
-            $result = BaccaratCard::BankerPair;
+            $result[] = BaccaratCard::BankerPair;
         }
 
         if ($this->player_third_card_points || $this->banker_third_card_points) {
-            $result = BaccaratCard::Big;
+            $result[] = BaccaratCard::Big;
         }
 
         if (!$this->player_third_card_points || !$this->banker_third_card_points) {
-            $result = BaccaratCard::Small;
+            $result[] = BaccaratCard::Small;
         }
 
-//        return $result;
+//        dd(implode(",", $result));
 
-        return [
-            $this->player_points > $this->banker_points ? BaccaratCard::Player : '',
-            $this->player_points < $this->banker_points ? BaccaratCard::Banker : '',
-            $this->player_points == $this->banker_points ? BaccaratCard::Tie : '',
-        ];
+        return $result;
 
 //        return [
 //            BaccaratCard::Player.'_'.$this->player_first_card_color,
