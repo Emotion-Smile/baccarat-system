@@ -5,10 +5,10 @@ use App\Kravanh\Domain\Baccarat\Models\BaccaratPayoutDeposited;
 
 use function Pest\Laravel\assertDatabaseCount;
 
-test('it can create and validate payout deposit in Dragon Tiger game', function () {
+test('it can create and validate payout deposit in baccarat game', function () {
 
     $deposit = (new BaccaratRecordPayoutDepositedAction())(
-        dragonTigerGameId: 1,
+        baccaratGameId: 1,
         memberId: 2,
         transactionId: 3,
         amount: 4000,
@@ -19,7 +19,7 @@ test('it can create and validate payout deposit in Dragon Tiger game', function 
 
     $deposit->refresh();
 
-    expect($deposit->dragon_tiger_game_id)->toBe(1)
+    expect($deposit->baccarat_game_id)->toBe(1)
         ->and($deposit->member_id)->toBe(2)
         ->and($deposit->transaction_id)->toBe(3)
         ->and((int) $deposit->amount)->toBe(4000)

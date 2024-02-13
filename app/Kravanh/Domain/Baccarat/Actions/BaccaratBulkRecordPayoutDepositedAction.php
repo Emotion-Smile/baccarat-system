@@ -28,7 +28,7 @@ final class BaccaratBulkRecordPayoutDepositedAction
             $meta = BaccaratGameTransactionTicketPayoutMetaData::fromMeta($transaction->meta);
 
             return [
-                'dragon_tiger_game_id' => $meta->gameId,
+                'baccarat_game_id' => $meta->gameId,
                 'member_id' => $transaction->payable_id,
                 'transaction_id' => $transaction->id,
                 'amount' => $transaction->amount,

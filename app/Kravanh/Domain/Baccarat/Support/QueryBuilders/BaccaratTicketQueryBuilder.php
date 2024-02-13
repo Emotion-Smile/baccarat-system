@@ -71,13 +71,13 @@ final class BaccaratTicketQueryBuilder extends Builder
             ->accepted()
             ->where(function (Builder $query) use ($game) {
                 $query->where('bet_on', $game->winner)
-                    ->where('bet_type', $game->winner)
+//                    ->where('bet_type', $game->winner)
                     ->orWhere(function (Builder $query) use ($game) {
                         foreach ($game->makeSubResult() as $result) {
                             $where = explode('_', $result);
                             $query
-                                ->orWhere('bet_on', $where[0])
-                                ->where('bet_type', $where[1]);
+                                ->orWhere('bet_on', $where[0]);
+//                                ->where('bet_type', $where[1]);
                         }
                     });
             });
@@ -92,10 +92,10 @@ final class BaccaratTicketQueryBuilder extends Builder
             ->accepted()
             ->where(function (Builder $query) {
                 $query->where('bet_on', BaccaratGameWinner::Player)
-                    ->where('bet_type', BaccaratGameWinner::Player)
+//                    ->where('bet_type', BaccaratGameWinner::Player)
                     ->orWhere(function (Builder $query) {
-                        $query->where('bet_on', BaccaratGameWinner::Banker)
-                            ->where('bet_type', BaccaratGameWinner::Banker);
+                        $query->where('bet_on', BaccaratGameWinner::Banker);
+//                            ->where('bet_type', BaccaratGameWinner::Banker);
                     });
             });
 

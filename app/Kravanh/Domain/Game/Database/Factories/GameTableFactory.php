@@ -14,10 +14,28 @@ class GameTableFactory extends Factory
 
     public function definition(): array
     {
+//        $game = Game::updateOrCreate(
+//            ['name' => GameName::DragonTiger],
+//            [
+//                'label' => 'Dragon & Tiger',
+//                'type' => GameType::Casino
+//            ],
+//        );
+//        return [
+//            'game_id' => $game->id,
+//            'label' => $this->faker->name,
+//            'stream_url' => '#',
+//            'active' => true
+//        ];
+        return $this->baccaratGameTable();
+    }
+
+    protected function baccaratGameTable(): array
+    {
         $game = Game::updateOrCreate(
-            ['name' => GameName::DragonTiger],
+            ['name' => GameName::Baccarat],
             [
-                'label' => 'Dragon & Tiger',
+                'label' => 'Baccarat',
                 'type' => GameType::Casino
             ],
         );

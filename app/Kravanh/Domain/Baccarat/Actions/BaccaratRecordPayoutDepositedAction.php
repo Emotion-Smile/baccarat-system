@@ -7,7 +7,7 @@ use App\Kravanh\Domain\Baccarat\Models\BaccaratPayoutDeposited;
 final class BaccaratRecordPayoutDepositedAction
 {
     public function __invoke(
-        int $dragonTigerGameId,
+        int $baccaratGameId,
         int $memberId,
         int $transactionId,
         int|float $amount,
@@ -15,7 +15,7 @@ final class BaccaratRecordPayoutDepositedAction
     ): BaccaratPayoutDeposited {
 
         return BaccaratPayoutDeposited::create([
-            'dragon_tiger_game_id' => $dragonTigerGameId,
+            'baccarat_game_id' => $baccaratGameId,
             'member_id' => $memberId,
             'transaction_id' => $transactionId,
             'amount' => $amount,

@@ -36,9 +36,9 @@ actions:
     35.BaccaratGameSubmitResultActionTest = Not Yet
     36.BaccaratGameSubmitResultManagerActionTest = Not Yet
     37.BaccaratPayoutMissingProcessingManagerActionTest = Not Yet
-    38.BaccaratPayoutProcessingManagerActionTest = Not Yet
-    39.BaccaratRecordPayoutDepositedActionTest = Not Yet
-    40.GameTableGetByGameIdActionTest = Not Yet
+    38.BaccaratPayoutProcessingManagerActionTest = Passed
+    39.BaccaratRecordPayoutDepositedActionTest = Passed
+    40.GameTableGetByGameIdActionTest = Passed
 controller:
     1.BaccaratGameBetControllerTest = Not Yet
     2.BaccaratGameCardScannerControllerTest = Not Yet

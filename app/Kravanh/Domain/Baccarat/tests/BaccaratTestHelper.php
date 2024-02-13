@@ -19,29 +19,29 @@ class BaccaratTestHelper
     {
         $winTicket1 = BaccaratTicket::first();
         $winTicket1->bet_on = BaccaratCard::Banker;
-        $winTicket1->bet_type = BaccaratCard::Banker;
+//        $winTicket1->bet_type = BaccaratCard::Banker;
         $winTicket1->saveQuietly();
 
         $winTicket2 = BaccaratTicket::find($winTicket1->id + 1);
         $winTicket2->bet_on = BaccaratCard::Banker;
-        $winTicket2->bet_type = BaccaratCard::Big;
+//        $winTicket2->bet_type = BaccaratCard::Big;
         $winTicket2->saveQuietly();
 
         $winTicket3 = BaccaratTicket::find($winTicket2->id + 1);
         $winTicket3->bet_on = BaccaratCard::Player;
-        $winTicket3->bet_type = BaccaratCard::Big;
+//        $winTicket3->bet_type = BaccaratCard::Big;
         $winTicket3->saveQuietly();
 
         $winTicket4 = BaccaratTicket::find($winTicket3->id + 1);
         $winTicket4->bet_on = BaccaratCard::Banker;
-        $winTicket4->bet_type = BaccaratCard::Big;
+//        $winTicket4->bet_type = BaccaratCard::Big;
         $winTicket4->amount = 40_000;
         $winTicket4->payout = 40_000;
         $winTicket4->saveQuietly();
 
         $winTicket5 = BaccaratTicket::find($winTicket4->id + 1);
         $winTicket5->bet_on = BaccaratCard::Player;
-        $winTicket5->bet_type = BaccaratCard::Small;
+//        $winTicket5->bet_type = BaccaratCard::Small;
         $winTicket5->user_id = $winTicket4->user_id;
         $winTicket5->amount = 40_000;
         $winTicket5->payout = 40_000;
@@ -54,32 +54,32 @@ class BaccaratTestHelper
     {
         $loseTicket1 = BaccaratTicket::find($winTicket5->id + 1);
         $loseTicket1->bet_on = BaccaratCard::Player;
-        $loseTicket1->bet_type = BaccaratCard::Player;
+//        $loseTicket1->bet_type = BaccaratCard::Player;
         $loseTicket1->saveQuietly();
 
         $loseTicket2 = BaccaratTicket::find($loseTicket1->id + 1);
         $loseTicket2->bet_on = BaccaratCard::Tie;
-        $loseTicket2->bet_type = BaccaratCard::Tie;
+//        $loseTicket2->bet_type = BaccaratCard::Tie;
         $loseTicket2->saveQuietly();
 
         $loseTicket3 = BaccaratTicket::find($loseTicket2->id + 1);
         $loseTicket3->bet_on = BaccaratCard::Banker;
-        $loseTicket3->bet_type = BaccaratCard::Big;
+//        $loseTicket3->bet_type = BaccaratCard::Big;
         $loseTicket3->saveQuietly();
 
         $loseTicket4 = BaccaratTicket::find($loseTicket3->id + 1);
         $loseTicket4->bet_on = BaccaratCard::Player;
-        $loseTicket4->bet_type = BaccaratCard::Big;
+//        $loseTicket4->bet_type = BaccaratCard::Big;
         $loseTicket4->saveQuietly();
 
         $loseTicket5 = BaccaratTicket::find($loseTicket4->id + 1);
         $loseTicket5->bet_on = BaccaratCard::Player;
-        $loseTicket5->bet_type = BaccaratCard::Small;
+//        $loseTicket5->bet_type = BaccaratCard::Small;
         $loseTicket5->saveQuietly();
 
         $loseTicket6 = BaccaratTicket::find($loseTicket5->id + 1);
         $loseTicket6->bet_on = BaccaratCard::Banker;
-        $loseTicket6->bet_type = BaccaratCard::Small;
+//        $loseTicket6->bet_type = BaccaratCard::Small;
         $loseTicket6->saveQuietly();
 
     }
