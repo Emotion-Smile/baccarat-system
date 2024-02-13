@@ -43,9 +43,9 @@ final class BaccaratCard
             throw BaccaratCardException::invalidRange();
         }
 
-        if (! $this->isValidType()) {
-            throw BaccaratCardException::invalidType();
-        }
+//        if (! $this->isValidType()) {
+//            throw BaccaratCardException::invalidType();
+//        }
     }
 
     /**

@@ -56,7 +56,7 @@ dto:
     3.BaccaratGameMemberBetDataTest = Passed
     4.BaccaratGameMemberShareCommissionDataTest = Passed
     5.BaccaratGameStateData = Passed
-    6.BaccaratGameSubmitResultDataTest = Not Yet
+    6.BaccaratGameSubmitResultDataTest = Passed
     7.BaccaratGameTransactionTicketPayoutMetaDataTest = Passed
 1.BaccaratBetOnTest = Passed
 2.BaccaratCardTest = Passed

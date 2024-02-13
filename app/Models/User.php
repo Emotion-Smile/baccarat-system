@@ -111,6 +111,7 @@ class User extends Authenticatable implements Wallet
         'maximum_bet_per_ticket',
         'normal_member',
         'can_play_dragon_tiger',
+        'can_play_baccarat'
     ];
 
     public function isSuspend(): bool
